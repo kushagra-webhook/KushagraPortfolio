@@ -64,10 +64,16 @@ export const Contact = () => {
       body.append('message', formData.message);
       files.forEach((file) => body.append('files', file));
 
-      const baseUrl = import.meta.env.NEXT_PUBLIC_APP_URL || '';
-      const url = `${String(baseUrl).replace(/\/$/, '')}/api/contact`;
+      const baseUrl =
+        import.meta.env.VITE_PUBLIC_APP_URL ||
+        import.meta.env.VITE_APP_URL ||
+        import.meta.env.NEXT_PUBLIC_APP_URL ||
+        '';
+      const absoluteUrl = baseUrl
+        ? `${String(baseUrl).replace(/\/$/, '')}/api/contact`
+        : '/api/contact';
 
-      const res = await fetch(url.startsWith('http') ? url : '/api/contact', {
+      const res = await fetch(absoluteUrl.startsWith('http') ? absoluteUrl : '/api/contact', {
         method: 'POST',
         body,
       });

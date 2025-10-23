@@ -7,25 +7,28 @@ function ensureEnv(name: string): string {
   return val;
 }
 
-const EMAIL_SERVER_HOST = ensureEnv('EMAIL_SERVER_HOST');
-const EMAIL_SERVER_PORT = Number(ensureEnv('EMAIL_SERVER_PORT'));
-const EMAIL_SERVER_USER = ensureEnv('EMAIL_SERVER_USER');
-const EMAIL_SERVER_PASSWORD = ensureEnv('EMAIL_SERVER_PASSWORD');
-const EMAIL_FROM = ensureEnv('EMAIL_FROM');
+function getTransporter() {
+  const EMAIL_SERVER_HOST = ensureEnv('EMAIL_SERVER_HOST');
+  const EMAIL_SERVER_PORT = Number(ensureEnv('EMAIL_SERVER_PORT'));
+  const EMAIL_SERVER_USER = ensureEnv('EMAIL_SERVER_USER');
+  const EMAIL_SERVER_PASSWORD = ensureEnv('EMAIL_SERVER_PASSWORD');
 
-const transporter = nodemailer.createTransport({
-  host: EMAIL_SERVER_HOST,
-  port: EMAIL_SERVER_PORT,
-  secure: EMAIL_SERVER_PORT === 465, // 465 = SSL, 587 = STARTTLS
-  auth: {
-    user: EMAIL_SERVER_USER,
-    pass: EMAIL_SERVER_PASSWORD,
-  },
-});
+  return nodemailer.createTransport({
+    host: EMAIL_SERVER_HOST,
+    port: EMAIL_SERVER_PORT,
+    secure: EMAIL_SERVER_PORT === 465, // 465 = SSL, 587 = STARTTLS
+    auth: {
+      user: EMAIL_SERVER_USER,
+      pass: EMAIL_SERVER_PASSWORD,
+    },
+  });
+}
 
 export async function sendAdminEmail(data: AdminEmailData) {
+  const EMAIL_FROM = ensureEnv('EMAIL_FROM');
   const subject = `New Contact Submission${data.subject ? ': ' + data.subject : ''}`;
   const html = adminTemplate(data);
+  const transporter = getTransporter();
   await transporter.sendMail({
     from: EMAIL_FROM,
     to: EMAIL_FROM,
@@ -35,8 +38,10 @@ export async function sendAdminEmail(data: AdminEmailData) {
 }
 
 export async function sendUserEmail(data: UserEmailData) {
+  const EMAIL_FROM = ensureEnv('EMAIL_FROM');
   const subject = 'Thanks for reaching out — I received your message';
   const html = userTemplate(data);
+  const transporter = getTransporter();
   await transporter.sendMail({
     from: EMAIL_FROM,
     to: data.email,
