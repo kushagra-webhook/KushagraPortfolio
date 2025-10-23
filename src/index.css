@@ -1,0 +1,265 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
+All colors MUST be HSL.
+*/
+
+@layer base {
+  :root {
+    /* Light theme - off-white base with deep navy accents */
+    --background: 210 20% 98%;
+    --foreground: 222 47% 11%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 222 47% 11%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 222 47% 11%;
+
+    --primary: 217 91% 60%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 210 17% 95%;
+    --secondary-foreground: 222 47% 11%;
+
+    --muted: 210 17% 95%;
+    --muted-foreground: 215 16% 47%;
+
+    --accent: 174 72% 48%;
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 214 32% 91%;
+    --input: 214 32% 91%;
+    --ring: 217 91% 60%;
+
+    --radius: 0.75rem;
+
+    /* AI/ML domain colors */
+    --ai-ml: 243 75% 59%;
+    --web-dev: 174 72% 48%;
+    --embedded: 38 92% 50%;
+    
+    /* Enhanced Gradients */
+    --gradient-hero: linear-gradient(135deg, hsl(217 91% 85% / 0.6), hsl(174 72% 85% / 0.6));
+    --gradient-bg: linear-gradient(135deg, hsl(210 20% 98%) 0%, hsl(217 91% 92%) 30%, hsl(174 72% 93%) 70%, hsl(210 20% 98%) 100%);
+    --gradient-card: linear-gradient(180deg, hsl(0 0% 100%), hsl(210 17% 97%));
+    --gradient-text-primary: linear-gradient(135deg, hsl(217 91% 50%), hsl(174 72% 40%));
+    --gradient-text-accent: linear-gradient(90deg, hsl(243 75% 55%), hsl(217 91% 55%));
+    
+    /* Shadows */
+    --shadow-sm: 0 1px 2px 0 hsl(222 47% 11% / 0.05);
+    --shadow-md: 0 4px 6px -1px hsl(222 47% 11% / 0.1);
+    --shadow-lg: 0 10px 15px -3px hsl(222 47% 11% / 0.1);
+    --shadow-glow: 0 0 20px hsl(217 91% 60% / 0.3);
+    --shadow-elegant: 0 8px 32px hsl(217 91% 60% / 0.15);
+    
+    /* Transitions */
+    --transition-base: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-slow: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-bounce: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  }
+
+  .dark {
+    /* Dark theme - deep navy base with electric accents */
+    --background: 222 47% 7%;
+    --foreground: 210 40% 98%;
+
+    --card: 222 47% 10%;
+    --card-foreground: 210 40% 98%;
+
+    --popover: 222 47% 10%;
+    --popover-foreground: 210 40% 98%;
+
+    --primary: 217 91% 60%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 217 33% 17%;
+    --secondary-foreground: 210 40% 98%;
+
+    --muted: 217 33% 17%;
+    --muted-foreground: 215 20% 65%;
+
+    --accent: 174 72% 48%;
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 63% 31%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 217 33% 17%;
+    --input: 217 33% 17%;
+    --ring: 217 91% 60%;
+
+    /* AI/ML domain colors (adjusted for dark) */
+    --ai-ml: 243 75% 65%;
+    --web-dev: 174 72% 52%;
+    --embedded: 38 92% 55%;
+    
+    /* Enhanced Gradients */
+    --gradient-hero: linear-gradient(135deg, hsl(217 91% 20% / 0.3), hsl(174 72% 20% / 0.3));
+    --gradient-bg: linear-gradient(135deg, hsl(222 47% 7%) 0%, hsl(217 91% 10%) 50%, hsl(217 33% 12%) 100%);
+    --gradient-card: linear-gradient(180deg, hsl(222 47% 10%), hsl(222 47% 12%));
+    --gradient-text-primary: linear-gradient(135deg, hsl(217 91% 65%), hsl(174 72% 55%));
+    --gradient-text-accent: linear-gradient(90deg, hsl(243 75% 70%), hsl(217 91% 65%));
+    
+    /* Shadows */
+    --shadow-sm: 0 1px 2px 0 hsl(0 0% 0% / 0.3);
+    --shadow-md: 0 4px 6px -1px hsl(0 0% 0% / 0.4);
+    --shadow-lg: 0 10px 15px -3px hsl(0 0% 0% / 0.5);
+    --shadow-glow: 0 0 30px hsl(217 91% 60% / 0.4);
+    --shadow-elegant: 0 8px 32px hsl(217 91% 60% / 0.2);
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply text-foreground antialiased;
+    font-feature-settings: "cv11", "ss01";
+    background: var(--gradient-bg);
+    position: relative;
+    overflow-x: hidden;
+  }
+  
+  body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: 
+      radial-gradient(ellipse at 15% 40%, hsl(217 91% 75% / 0.15) 0%, transparent 45%),
+      radial-gradient(ellipse at 85% 70%, hsl(174 72% 70% / 0.15) 0%, transparent 45%),
+      radial-gradient(ellipse at 50% 10%, hsl(243 75% 75% / 0.12) 0%, transparent 40%);
+    animation: subtleFloat 20s ease-in-out infinite;
+    pointer-events: none;
+    z-index: 0;
+  }
+  
+  .dark body::before {
+    background: 
+      radial-gradient(ellipse at 15% 40%, hsl(217 91% 30% / 0.2) 0%, transparent 45%),
+      radial-gradient(ellipse at 85% 70%, hsl(174 72% 30% / 0.2) 0%, transparent 45%),
+      radial-gradient(ellipse at 50% 10%, hsl(243 75% 30% / 0.15) 0%, transparent 40%);
+  }
+  
+  body > * {
+    position: relative;
+    z-index: 1;
+  }
+  
+  
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+@layer components {
+  .gradient-hero {
+    background: var(--gradient-hero);
+  }
+  
+  .gradient-card {
+    background: var(--gradient-card);
+  }
+  
+  .shadow-glow {
+    box-shadow: var(--shadow-glow);
+  }
+  
+  .transition-smooth {
+    transition: var(--transition-base);
+  }
+  
+  .animate-float {
+    animation: float 6s ease-in-out infinite;
+  }
+  
+  .animate-glow {
+    animation: glow 3s ease-in-out infinite alternate;
+  }
+  
+  .animate-slide-up {
+    animation: slideUp 0.6s ease-out;
+  }
+  
+  .animate-fade-in {
+    animation: fadeIn 0.8s ease-out;
+  }
+  
+  .gradient-text {
+    background: var(--gradient-text-primary);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  
+  .shadow-elegant {
+    box-shadow: var(--shadow-elegant);
+  }
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes glow {
+  0% {
+    box-shadow: 0 0 5px hsl(var(--primary) / 0.3);
+  }
+  100% {
+    box-shadow: 0 0 20px hsl(var(--primary) / 0.6);
+  }
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes subtleFloat {
+  0%, 100% {
+    transform: translate(0, 0) scale(1);
+    opacity: 1;
+  }
+  25% {
+    transform: translate(3%, -2%) scale(1.02);
+    opacity: 0.95;
+  }
+  50% {
+    transform: translate(-2%, 3%) scale(0.98);
+    opacity: 0.9;
+  }
+  75% {
+    transform: translate(2%, 2%) scale(1.01);
+    opacity: 0.95;
+  }
+}
