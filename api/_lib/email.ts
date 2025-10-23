@@ -24,13 +24,16 @@ function getTransporter() {
   });
 }
 
+// Display name for outgoing emails
+const FROM_NAME = 'Kushagra Singh';
+
 export async function sendAdminEmail(data: AdminEmailData) {
   const EMAIL_FROM = ensureEnv('EMAIL_FROM');
   const subject = `New Contact Submission${data.subject ? ': ' + data.subject : ''}`;
   const html = adminTemplate(data);
   const transporter = getTransporter();
   await transporter.sendMail({
-    from: EMAIL_FROM,
+    from: { name: FROM_NAME, address: EMAIL_FROM },
     to: EMAIL_FROM,
     subject,
     html,
@@ -39,11 +42,11 @@ export async function sendAdminEmail(data: AdminEmailData) {
 
 export async function sendUserEmail(data: UserEmailData) {
   const EMAIL_FROM = ensureEnv('EMAIL_FROM');
-  const subject = 'Thanks for reaching out — I received your message';
+  const subject = 'Thank you for reaching out. I have received your message.';
   const html = userTemplate(data);
   const transporter = getTransporter();
   await transporter.sendMail({
-    from: EMAIL_FROM,
+    from: { name: FROM_NAME, address: EMAIL_FROM },
     to: data.email,
     subject,
     html,

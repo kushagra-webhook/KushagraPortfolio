@@ -35,7 +35,7 @@ export function adminTemplate({
       <div style="padding:32px">
         <div style="text-align:center;margin-bottom:24px">
           <h1 style="margin:0;font-size:28px;font-weight:700;background:linear-gradient(135deg, #4f46e5, #06b6d4);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text">Kushagra Singh</h1>
-          <p style="margin:8px 0 0 0;color:#64748b;font-size:14px">AI/ML Engineer & Software Developer</p>
+          <p style="margin:8px 0 0 0;color:#64748b;font-size:14px">Aspiring AI/ML Engineer & Software Developer</p>
         </div>
         
         <h2 style="margin:0 0 16px 0;color:#1e293b;font-size:24px;font-weight:600">New Contact Submission</h2>
@@ -95,7 +95,7 @@ export function userTemplate({
       <div style="padding:32px">
         <div style="text-align:center;margin-bottom:24px">
           <h1 style="margin:0;font-size:28px;font-weight:700;background:linear-gradient(135deg, #4f46e5, #06b6d4);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text">Kushagra Singh</h1>
-          <p style="margin:8px 0 0 0;color:#64748b;font-size:14px">AI/ML Engineer & Software Developer</p>
+          <p style="margin:8px 0 0 0;color:#64748b;font-size:14px">Aspiring AI/ML Engineer & Software Developer</p>
         </div>
         
         <h2 style="margin:0 0 16px 0;color:#1e293b;font-size:24px;font-weight:600">Thanks for reaching out!</h2>
@@ -123,8 +123,7 @@ export function userTemplate({
 
         <div style="border-top:2px solid #e2e8f0;padding-top:24px;margin-top:32px">
           <div style="color:#64748b;font-size:14px;line-height:1.6">
-            // <p style="margin:0 0 16px 0">--</p>
-            <p style="margin:0 0 8px 0;color:#1e293b;font-weight:600">Warm regards,</p>
+            <p style="margin:0 0 10px 0;color:#1e293b;font-weight:600">Warm regards,</p>
             <p style="margin:0 0 8px 0;color:#1e293b;font-weight:600;font-size:16px">Kushagra Singh</p>
             <p style="margin:0 0 4px 0">Final Year, B.Tech Computer Science Engineering (Grad-2026)</p>
             <p style="margin:0 0 12px 0">MIT-WPU, Pune, India</p>
