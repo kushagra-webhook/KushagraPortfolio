@@ -2,7 +2,7 @@ import type { VercelRequest, VercelResponse } from '@vercel/node';
 import formidable from 'formidable';
 import fs from 'fs';
 import { createClient } from '@supabase/supabase-js';
-import { sendAdminEmail, sendUserEmail } from '../_lib/email';
+import { sendAdminEmail, sendUserEmail } from '../_lib/email.js';
 import { randomUUID } from 'crypto';
 
 export const config = {

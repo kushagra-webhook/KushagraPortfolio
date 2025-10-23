@@ -1,5 +1,5 @@
 import nodemailer from 'nodemailer';
-import { adminTemplate, userTemplate, type AdminEmailData, type UserEmailData } from './templates';
+import { adminTemplate, userTemplate, type AdminEmailData, type UserEmailData } from './templates.js';
 
 function ensureEnv(name: string): string {
   const val = process.env[name];
