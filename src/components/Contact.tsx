@@ -56,17 +56,41 @@ export const Contact = () => {
       return;
     }
 
-    // Simulate sending (since no backend)
-    setTimeout(() => {
+    try {
+      const body = new FormData();
+      body.append('name', formData.name);
+      body.append('email', formData.email);
+      body.append('subject', formData.subject);
+      body.append('message', formData.message);
+      files.forEach((file) => body.append('files', file));
+
+      const baseUrl = import.meta.env.NEXT_PUBLIC_APP_URL || '';
+      const url = `${String(baseUrl).replace(/\/$/, '')}/api/contact`;
+
+      const res = await fetch(url.startsWith('http') ? url : '/api/contact', {
+        method: 'POST',
+        body,
+      });
+
+      if (!res.ok) {
+        const data = await res.json().catch(() => ({ error: 'Unknown error' }));
+        throw new Error(data.error || 'Failed to send message');
+      }
+
       setNotificationType('success');
       setNotificationMessage('Message sent successfully! I will get back to you soon.');
       setShowNotification(true);
-      setIsSubmitting(false);
-      
+
       // Reset form
       setFormData({ name: '', email: '', subject: '', message: '' });
       setFiles([]);
-    }, 1500);
+    } catch (error: any) {
+      setNotificationType('error');
+      setNotificationMessage(error.message || 'Something went wrong while sending your message.');
+      setShowNotification(true);
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
