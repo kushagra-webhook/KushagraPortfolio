@@ -66,15 +66,39 @@ export const ChatWindow = ({ isOpen, onClose }: ChatWindowProps) => {
   // Check if Flask server is running
   useEffect(() => {
     const checkServerStatus = async () => {
-      try {
-        const apiUrl = import.meta.env.VITE_API_BASE_URL || 'https://portfolio-chatbot-backend-vtgu.onrender.com';
-        const response = await fetch(`${apiUrl}/api/health`);
-        if (!response.ok) {
-          setIsError(true);
+      const apiUrl = import.meta.env.VITE_API_BASE_URL || 'https://portfolio-chatbot-backend-vtgu.onrender.com';
+      
+      // Retry logic for better reliability
+      for (let attempt = 1; attempt <= 3; attempt++) {
+        try {
+          const response = await fetch(`${apiUrl}/api/health`, {
+            method: 'GET',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            // Add timeout
+            signal: AbortSignal.timeout(10000)
+          });
+          
+          if (response.ok) {
+            console.log('Backend health check successful');
+            setIsError(false);
+            return;
+          } else {
+            console.warn(`Health check attempt ${attempt} failed with status: ${response.status}`);
+          }
+        } catch (error) {
+          console.warn(`Health check attempt ${attempt} failed:`, error);
+          if (attempt === 3) {
+            console.error('All health check attempts failed, setting error state');
+            setIsError(true);
+          }
         }
-      } catch (error) {
-        console.error('Error connecting to Flask server:', error);
-        setIsError(true);
+        
+        // Wait before retry (exponential backoff)
+        if (attempt < 3) {
+          await new Promise(resolve => setTimeout(resolve, attempt * 1000));
+        }
       }
     };
     
@@ -115,22 +139,47 @@ export const ChatWindow = ({ isOpen, onClose }: ChatWindowProps) => {
         return;
       }
 
-      // Call Flask backend API
+      // Call Flask backend API with retry logic
       const apiUrl = import.meta.env.VITE_API_BASE_URL || 'https://portfolio-chatbot-backend-vtgu.onrender.com';
-      const response = await fetch(`${apiUrl}/api/chat`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ 
-          message: input,
-          // Include user_id if available from auth
-          // user_id: auth?.user?.id 
-        }),
-      });
-
-      if (!response.ok) {
-        throw new Error('Failed to get response from server');
+      
+      let response;
+      let lastError;
+      
+      // Retry logic for chat requests
+      for (let attempt = 1; attempt <= 3; attempt++) {
+        try {
+          response = await fetch(`${apiUrl}/api/chat`, {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ 
+              message: input,
+              // Include user_id if available from auth
+              // user_id: auth?.user?.id 
+            }),
+            signal: AbortSignal.timeout(15000) // 15 second timeout
+          });
+          
+          if (response.ok) {
+            break; // Success, exit retry loop
+          } else {
+            console.warn(`Chat request attempt ${attempt} failed with status: ${response.status}`);
+            lastError = new Error(`HTTP ${response.status}: ${response.statusText}`);
+          }
+        } catch (error) {
+          console.warn(`Chat request attempt ${attempt} failed:`, error);
+          lastError = error;
+          
+          // Wait before retry (exponential backoff)
+          if (attempt < 3) {
+            await new Promise(resolve => setTimeout(resolve, attempt * 1000));
+          }
+        }
+      }
+      
+      if (!response || !response.ok) {
+        throw lastError || new Error('All chat request attempts failed');
       }
 
       const data = await response.json();
