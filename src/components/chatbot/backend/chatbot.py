@@ -385,6 +385,30 @@ def chat():
         # Generate response
         response = generate_response(query, similar_texts, user_id)
         
+        # Log to Supabase
+        try:
+            supabase_url = os.getenv("SUPABASE_URL")
+            supabase_key = os.getenv("SUPABASE_KEY")
+            
+            if supabase_url and supabase_key:
+                supabase: Client = create_client(supabase_url, supabase_key)
+                
+                log_data = {
+                    "user_id": user_id,
+                    "user_message": query,
+                    "bot_response": response,
+                    "timestamp": datetime.now(pytz.UTC).isoformat()
+                }
+                
+                result = supabase.table("chatbot_logs").insert(log_data).execute()
+                print(f"Logged chat interaction: {result}")
+            else:
+                print("Supabase credentials not found, skipping logging")
+                
+        except Exception as log_error:
+            print(f"Error logging to Supabase: {log_error}")
+            # Don't fail the request if logging fails
+        
         # Return the response
         return jsonify({
             "response": response

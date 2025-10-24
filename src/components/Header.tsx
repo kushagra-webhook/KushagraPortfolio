@@ -77,19 +77,19 @@ export const Header = () => {
       <nav 
         className={`container mx-auto max-w-6xl rounded-[2rem] px-8 transition-all duration-700 ease-in-out ${
           isScrolled 
-            ? 'py-3 shadow-[0_8px_32px_rgba(0,0,0,0.12)]' 
-            : 'py-4 shadow-[0_8px_24px_rgba(0,0,0,0.08)]'
-        }`}
+            ? 'py-3 shadow-[0_8px_32px_rgba(0,0,0,0.12)] dark:bg-black/20 dark:border-white/10' 
+            : 'py-4 shadow-[0_8px_24px_rgba(0,0,0,0.08)] dark:bg-black/10 dark:border-white/5'
+        } dark:backdrop-blur-[60px] dark:backdrop-saturate-[200%]`}
         style={{
           background: isScrolled 
-            ? 'rgba(255, 255, 255, 0.08)' 
-            : 'rgba(255, 255, 255, 0.05)',
-          backdropFilter: 'blur(40px) saturate(180%)',
-          WebkitBackdropFilter: 'blur(40px) saturate(180%)',
-          border: '1px solid rgba(255, 255, 255, 0.1)',
+            ? 'rgba(255, 255, 255, 0.12)' 
+            : 'rgba(255, 255, 255, 0.08)',
+          backdropFilter: 'blur(60px) saturate(200%)',
+          WebkitBackdropFilter: 'blur(60px) saturate(200%)',
+          border: '1px solid rgba(255, 255, 255, 0.18)',
           boxShadow: isScrolled
-            ? '0 8px 32px rgba(0, 0, 0, 0.12), inset 0 1px 0 rgba(255, 255, 255, 0.1)'
-            : '0 8px 24px rgba(0, 0, 0, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.08)',
+            ? '0 8px 32px rgba(0, 0, 0, 0.12), inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 0 0 1px rgba(255, 255, 255, 0.05)'
+            : '0 8px 24px rgba(0, 0, 0, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.15), 0 0 0 1px rgba(255, 255, 255, 0.03)',
         }}
       >
         <div className={`flex transition-all duration-500 ${isScrolled ? 'flex-col items-center gap-3' : 'items-center justify-between'}`}>

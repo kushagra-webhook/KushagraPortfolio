@@ -217,6 +217,11 @@ export const ChatWindow = ({ isOpen, onClose }: ChatWindowProps) => {
                     ? 'bg-gradient-to-r from-purple-500 to-pink-500 text-white rounded-br-md'
                     : 'bg-card text-foreground rounded-bl-md border border-border shadow-sm'
                 }`}
+                style={{
+                  wordBreak: 'break-word',
+                  overflowWrap: 'break-word',
+                  hyphens: 'auto'
+                }}
               >
                 {msg.html ? (
                   <div dangerouslySetInnerHTML={{ __html: msg.text }} />
