@@ -29,6 +29,9 @@ from supabase import Client, create_client
 
 print("Starting chatbot initialization...")
 
+# Load environment variables from .env file
+load_dotenv()
+
 # Force garbage collection at startup
 import gc
 gc.collect()
@@ -57,15 +60,15 @@ print("Environment variables loaded")
 # Initialize Flask app
 print("Initializing Flask app...")
 app = Flask(__name__)
+
+# Get allowed origins from environment variable or use default in development
+ALLOWED_ORIGINS = os.getenv("ALLOWED_ORIGINS", "http://localhost:3000,http://localhost:5173,http://localhost:5800,http://localhost:8080,https://kushagra-singh.vercel.app/,https://kushagra-singh.vercel.app")
+allowed_origins = [origin.strip() for origin in ALLOWED_ORIGINS.split(",")]
+
+# Enable CORS with specific origins
 CORS(
     app,
-    origins=[
-        "http://localhost:3000",
-        "http://localhost:5173",  # Vite default port
-        "http://localhost:5800",
-        "http://localhost:8080",  # Current frontend port
-        "https://kushagra-singh.vercel.app/"
-    ],
+    origins=allowed_origins,
     supports_credentials=True,
     allow_headers="*",
     methods=["GET", "POST", "OPTIONS"],
@@ -402,6 +405,14 @@ def health_check():
 
 # Run the app
 if __name__ == "__main__":
-    port = int(os.getenv("CHATBOT_PORT", 5800))
-    app.run(host="0.0.0.0", port=port, debug=False)
+    # Get port from environment variable (Render sets PORT, local dev can use CHATBOT_PORT)
+    port = int(os.getenv("PORT", os.getenv("CHATBOT_PORT", 5800)))
+    debug_mode = os.getenv("FLASK_ENV", "production") == "development"
+    
+    # Print environment info
+    env_type = "Development" if debug_mode else "Production"
+    print(f"Running in {env_type} mode on port {port}")
+    print(f"Allowed origins: {allowed_origins}")
+    
+    app.run(host="0.0.0.0", port=port, debug=debug_mode)
     print(f"Flask app running on port {port}")

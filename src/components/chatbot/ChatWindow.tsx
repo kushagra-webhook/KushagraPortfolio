@@ -67,7 +67,8 @@ export const ChatWindow = ({ isOpen, onClose }: ChatWindowProps) => {
   useEffect(() => {
     const checkServerStatus = async () => {
       try {
-        const response = await fetch('http://localhost:5800/api/health');
+        const apiUrl = process.env.NEXT_PUBLIC_API_BASE_URL || 'http://localhost:5800';
+        const response = await fetch(`${apiUrl}/api/health`);
         if (!response.ok) {
           setIsError(true);
         }
@@ -115,7 +116,8 @@ export const ChatWindow = ({ isOpen, onClose }: ChatWindowProps) => {
       }
 
       // Call Flask backend API
-      const response = await fetch('http://localhost:5800/api/chat', {
+      const apiUrl = process.env.NEXT_PUBLIC_API_BASE_URL || 'http://localhost:5800';
+      const response = await fetch(`${apiUrl}/api/chat`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
