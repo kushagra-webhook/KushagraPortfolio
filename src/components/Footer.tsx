@@ -2,9 +2,12 @@ import { Github, Linkedin, Mail, ArrowUp, Heart, Code, Sparkles } from "lucide-r
 import { Button } from "@/components/ui/button";
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
+import { Notification } from "@/components/ui/notification";
+import { copyToClipboard } from "@/utils/clipboard";
 
 export function Footer() {
   const [showScrollTop, setShowScrollTop] = useState(false);
+  const [showNotification, setShowNotification] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -35,7 +38,19 @@ export function Footer() {
       icon: Mail, 
       href: "mailto:kushagraa.n@gmail.com", 
       label: "Email",
-      hoverColor: "hover:text-primary"
+      hoverColor: "hover:text-primary",
+      onClick: async (e: React.MouseEvent) => {
+        e.preventDefault();
+        const success = await copyToClipboard('kushagraa.n@gmail.com');
+        if (success) {
+          setShowNotification(true);
+          // Commenting out external handler for now
+          // setTimeout(() => {
+          //   window.location.href = 'mailto:kushagraa.n@gmail.com';
+          // }, 100);
+        }
+      },
+      title: "mailto:kushagraa.n@gmail.com"
     },
   ];
 
@@ -139,6 +154,7 @@ export function Footer() {
                       >
                         <a 
                           href={social.href} 
+                          onClick={social.onClick}
                           target={social.href.startsWith('http') ? "_blank" : undefined}
                           rel={social.href.startsWith('http') ? "noopener noreferrer" : undefined}
                           aria-label={social.label}
@@ -168,6 +184,13 @@ export function Footer() {
           </motion.div>
         </div>
       </footer>
+
+      {showNotification && (
+        <Notification 
+          message="Email copied to clipboard!" 
+          onClose={() => setShowNotification(false)} 
+        />
+      )}
 
       {/* Scroll to Top Button - Bottom Left */}
       {showScrollTop && (

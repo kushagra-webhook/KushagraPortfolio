@@ -22,3 +22,9 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+chatbot/venv
+chatbot\venv
+.env
+chatbot-copy
+src/components/chatbot/backend/venv

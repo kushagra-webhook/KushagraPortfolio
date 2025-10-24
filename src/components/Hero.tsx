@@ -2,6 +2,8 @@ import { motion } from "framer-motion";
 import { Github, Linkedin, Mail, ExternalLink, GraduationCap } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useEffect, useState } from "react";
+import { Notification } from "@/components/ui/notification";
+import { copyToClipboard } from "@/utils/clipboard";
 
 const taglines = [
   "Crafting Intelligent Systems with Scalable AI Solutions.",
@@ -30,6 +32,7 @@ const taglines = [
 
 export function Hero() {
   const [taglineIndex, setTaglineIndex] = useState(0);
+  const [showNotification, setShowNotification] = useState(false);
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -168,12 +171,36 @@ export function Hero() {
                 LinkedIn
               </a>
             </Button>
-            <Button asChild className="shadow-md hover:shadow-lg transition-all bg-[#ea4335] hover:bg-[#d33426] text-white border-0">
-              <a href="mailto:kushagraa.n@gmail.com">
+            <Button 
+              asChild
+              className="shadow-md hover:shadow-lg transition-all bg-[#ea4335] hover:bg-[#d33426] text-white border-0 group"
+            >
+              <a 
+                href="mailto:kushagraa.n@gmail.com"
+                onClick={async (e) => {
+                  e.preventDefault();
+                  const success = await copyToClipboard('kushagraa.n@gmail.com');
+                  if (success) {
+                    setShowNotification(true);
+                    // Commenting out external handler for now
+                    // setTimeout(() => {
+                    //   window.location.href = 'mailto:kushagraa.n@gmail.com';
+                    // }, 100);
+                  }
+                }}
+                title="mailto:kushagraa.n@gmail.com"
+                className="flex items-center"
+              >
                 <Mail className="mr-2 h-4 w-4" />
                 Email
               </a>
             </Button>
+            {showNotification && (
+              <Notification 
+                message="Email copied to clipboard!" 
+                onClose={() => setShowNotification(false)} 
+              />
+            )}
             <Button asChild className="shadow-md hover:shadow-lg transition-all bg-[#4285f4] hover:bg-[#3367d6] text-white border-0">
               <a href="https://scholar.google.com/citations?user=upUymaUAAAAJ&hl=en" target="_blank" rel="noopener noreferrer">
                 <GraduationCap className="mr-2 h-4 w-4" />
