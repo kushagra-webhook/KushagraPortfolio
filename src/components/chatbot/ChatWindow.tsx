@@ -6,6 +6,7 @@ interface Message {
   sender: 'user' | 'bot';
   text: string;
   isTyping?: boolean;
+  html?: boolean;
 }
 
 interface ChatWindowProps {
@@ -41,9 +42,11 @@ export const ChatWindow = ({ isOpen, onClose }: ChatWindowProps) => {
   const [messages, setMessages] = useState<Message[]>([]);
   const [input, setInput] = useState('');
   const [isTyping, setIsTyping] = useState(false);
+  const [isError, setIsError] = useState(false);
   const messagesEndRef = useRef<HTMLDivElement>(null);
 
-  const knowledgeBase: Record<string, string> = {
+  // Fallback responses in case the Flask server is not available
+  const fallbackResponses: Record<string, string> = {
     'help': "I can tell you about Kushagra's experience, projects, publications, skills, and how to contact him. Just ask!",
     'projects': "Kushagra has worked on various projects including IRIS Club RAG Chatbot, DocsVerse, LangGraph Researcher, and more. Check out the Projects section for details!",
     'contact': "You can reach Kushagra at kushagraa.n@gmail.com or connect via LinkedIn, GitHub, or the contact form on this website.",
@@ -60,10 +63,29 @@ export const ChatWindow = ({ isOpen, onClose }: ChatWindowProps) => {
     scrollToBottom();
   }, [messages]);
 
-  const getBotResponse = (userMessage: string): string => {
+  // Check if Flask server is running
+  useEffect(() => {
+    const checkServerStatus = async () => {
+      try {
+        const response = await fetch('http://localhost:5800/api/health');
+        if (!response.ok) {
+          setIsError(true);
+        }
+      } catch (error) {
+        console.error('Error connecting to Flask server:', error);
+        setIsError(true);
+      }
+    };
+    
+    if (isOpen) {
+      checkServerStatus();
+    }
+  }, [isOpen]);
+
+  const getFallbackResponse = (userMessage: string): string => {
     const lowerMessage = userMessage.toLowerCase();
     
-    for (const [key, response] of Object.entries(knowledgeBase)) {
+    for (const [key, response] of Object.entries(fallbackResponses)) {
       if (lowerMessage.includes(key)) {
         return response;
       }
@@ -72,7 +94,7 @@ export const ChatWindow = ({ isOpen, onClose }: ChatWindowProps) => {
     return "That's an interesting question! For detailed information, please explore the different sections of this portfolio or use the contact form to reach out directly.";
   };
 
-  const handleSend = () => {
+  const handleSend = async () => {
     if (!input.trim() || isTyping) return;
 
     const userMessage: Message = { sender: 'user', text: input };
@@ -80,13 +102,57 @@ export const ChatWindow = ({ isOpen, onClose }: ChatWindowProps) => {
     setInput('');
     setIsTyping(true);
 
-    // Simulate typing delay
-    setTimeout(() => {
-      const botResponse = getBotResponse(input);
-      const botMessage: Message = { sender: 'bot', text: botResponse };
+    try {
+      if (isError) {
+        // Use fallback if server is not available
+        setTimeout(() => {
+          const botResponse = getFallbackResponse(input);
+          const botMessage: Message = { sender: 'bot', text: botResponse };
+          setMessages((prev) => [...prev, botMessage]);
+          setIsTyping(false);
+        }, 1000);
+        return;
+      }
+
+      // Call Flask backend API
+      const response = await fetch('http://localhost:5800/api/chat', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ 
+          message: input,
+          // Include user_id if available from auth
+          // user_id: auth?.user?.id 
+        }),
+      });
+
+      if (!response.ok) {
+        throw new Error('Failed to get response from server');
+      }
+
+      const data = await response.json();
+      const botMessage: Message = { 
+        sender: 'bot', 
+        text: data.response,
+        html: true // Mark as HTML to render links correctly
+      };
+      
       setMessages((prev) => [...prev, botMessage]);
+    } catch (error) {
+      console.error('Error getting chatbot response:', error);
+      
+      // Use fallback on error
+      const botMessage: Message = { 
+        sender: 'bot', 
+        text: "I'm having trouble connecting to my knowledge base right now. Please try again later or explore the portfolio sections directly."
+      };
+      
+      setMessages((prev) => [...prev, botMessage]);
+      setIsError(true);
+    } finally {
       setIsTyping(false);
-    }, 1000);
+    }
   };
 
   const handleQuickAction = (actionText: string) => {
@@ -123,6 +189,8 @@ export const ChatWindow = ({ isOpen, onClose }: ChatWindowProps) => {
           <button
             onClick={onClose}
             className="text-white hover:text-purple-200 transition-colors"
+            title="Close chat"
+            aria-label="Close chat"
           >
             <svg className="w-6 h-6" fill="none" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" viewBox="0 0 24 24" stroke="currentColor">
               <path d="M6 18L18 6M6 6l12 12" />
@@ -145,11 +213,57 @@ export const ChatWindow = ({ isOpen, onClose }: ChatWindowProps) => {
                 className={`max-w-[80%] p-4 rounded-2xl ${
                   msg.sender === 'user'
                     ? 'bg-gradient-to-r from-purple-500 to-pink-500 text-white rounded-br-md'
-                    : 'bg-card text-foreground rounded-bl-md border border-border'
+                    : 'bg-card text-foreground rounded-bl-md border border-border shadow-sm'
                 }`}
               >
-                {msg.text}
-              </div>
+                {msg.html ? (
+                  <div dangerouslySetInnerHTML={{ __html: msg.text }} />
+                ) : (
+                  <div className="prose prose-sm dark:prose-invert max-w-none space-y-1">
+                    {msg.text.split('\n').map((line, i) => {
+                      // Handle numbered lists (1. Item)
+                      if (/^\d+\.\s/.test(line)) {
+                        const number = line.match(/^\d+/)[0];
+                        const content = line.replace(/^\d+\.\s/, '');
+                        
+                        // Process links in content
+                        const processedContent = processLinks(content, i);
+                        
+                        return (
+                          <div key={i} className="flex items-start mb-3">
+                            <span className="font-bold mr-2 text-purple-600 min-w-[20px] text-right">{number}.</span>
+                            <span className="flex-1">{processedContent}</span>
+                          </div>
+                        );
+                      }
+                      // Handle bullet points (- Item or • Item)
+                      else if (/^[-•]\s/.test(line)) {
+                        const content = line.replace(/^[-•]\s/, '');
+                        
+                        // Process links in content
+                        const processedContent = processLinks(content, i);
+                        
+                        return (
+                          <div key={i} className="flex items-start mb-3 ml-2">
+                            <span className="mr-2 text-purple-600">•</span>
+                            <span className="flex-1">{processedContent}</span>
+                          </div>
+                        );
+                      }
+                      // Check for links in backticks format like `http://example.com`
+                      else if (/`https?:\/\/[^`]+`/.test(line)) {
+                        return <p key={i} className="mb-2">{processLinks(line, i)}</p>;
+                      }
+                      // Regular text
+                      else if (line.trim()) {
+                        return <p key={i} className="mb-2">{processLinks(line, i)}</p>;
+                      }
+                      // Empty line - add more spacing
+                      return <div key={i} className="h-2"></div>;
+                    })}
+                  </div>
+                )}
+                </div>
             </motion.div>
           ))}
           
@@ -189,6 +303,8 @@ export const ChatWindow = ({ isOpen, onClose }: ChatWindowProps) => {
               type="submit"
               disabled={!input.trim() || isTyping}
               className="bg-gradient-to-r from-purple-600 to-pink-600 text-white rounded-full p-3 hover:opacity-90 transition-opacity disabled:opacity-50 disabled:cursor-not-allowed"
+              title="Send message"
+              aria-label="Send message"
             >
               <svg className="w-5 h-5 transform rotate-90" fill="none" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" viewBox="0 0 24 24" stroke="currentColor">
                 <path d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />
@@ -200,3 +316,55 @@ export const ChatWindow = ({ isOpen, onClose }: ChatWindowProps) => {
     </AnimatePresence>
   );
 };
+
+// Add this function before the return statement in the ChatWindow component
+function processLinks(text, lineIndex) {
+  // Regular expression to find URLs in text, including those in backticks
+  const urlRegex = /`?(https?:\/\/[^\s`]+)`?/g;
+  const parts = [];
+  let lastIndex = 0;
+  let match;
+  
+  // Find all URLs in the text
+  while ((match = urlRegex.exec(text)) !== null) {
+    // Add text before the URL
+    if (match.index > lastIndex) {
+      parts.push(text.substring(lastIndex, match.index));
+    }
+    
+    // Extract the URL, removing backticks if present
+    let url = match[0];
+    const hasBackticks = url.startsWith('`') && url.endsWith('`');
+    if (hasBackticks) {
+      url = url.substring(1, url.length - 1);
+    }
+    
+    // Add the URL as a link
+    parts.push(
+      <a 
+        key={`link-${lineIndex}-${parts.length}`}
+        href={url} 
+        target="_blank" 
+        rel="noopener noreferrer" 
+        className="text-blue-600 hover:text-blue-800 hover:underline font-medium border-b border-blue-300 pb-0.5 transition-colors"
+      >
+        {url}
+      </a>
+    );
+    
+    lastIndex = match.index + match[0].length;
+  }
+  
+  // Add any remaining text
+  if (lastIndex < text.length) {
+    parts.push(text.substring(lastIndex));
+  }
+  
+  // If we found links, return the processed parts
+  if (parts.length > 0) {
+    return <>{parts}</>;
+  }
+  
+  // Otherwise, return the text as is
+  return text;
+}

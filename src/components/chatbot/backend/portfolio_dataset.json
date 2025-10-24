@@ -1,0 +1,142 @@
+[
+    {
+        "question": "Who is Kushagra Singh?",
+        "answer": "Kushagra Singh is a Final Year Computer Science Engineering student at MIT World Peace University, Pune, passionate about building impactful tech solutions at the crossroads of Artificial Intelligence, Machine Learning, Web Development, and Embedded Systems. As the Technical Head of the IRIS Tech Club, he leads a team of developers delivering innovative projects. He's interested in the AI/ML and Software Developer domains."
+    },
+    {
+        "question": "What are Kushagra Singh's technical skills?",
+        "answer": "Kushagra is highly skilled in multiple domains:\n- Programming Languages: Python, C, C++, Java, JavaScript\n- Machine Learning: PyTorch, TensorFlow, Scikit-Learn, HuggingFace, LangChain, OpenCV, NLTK, spaCy\n- Web Development: Next.js, React, Node.js, Express.js, FastAPI, Spring Boot\n- Databases: MySQL, MongoDB, PostgreSQL, MongoDB Atlas\n- Cloud & DevOps: AWS, Kubernetes, Docker, CI/CD Pipelines, Minikube\n- Big Data: Apache Spark, HDFS, Kafka, Hive, HBase, Cloudera\n- Embedded Systems: Arduino, STM32, ESP32, Raspberry Pi\n- Visualization: Tableau, Matplotlib, Seaborn\n- Generative AI: LLaMA-3, Retrieval-Augmented Generation"
+    },
+    {
+        "question": "What projects has Kushagra Singh worked on?",
+        "answer": "Kushagra has led several high-impact projects:\n1) Adobe Hackathon Finalist - AI-powered PDF analysis platform using Google Gemini and Azure Speech\n2) Mitsubishi Hackathon Winner - AI-Powered Superannuation Advisor Dashboard with ML-driven retirement projections\n3) Government Research Project - STIV-based Velocity Estimation for CWPRS (GOI)\n4) IRIS Club RAG Chatbot - Research paper published at IEEE ICoICC 2025\n5) Bosch Hackathon Finalist - Autonomous Traffic Management System with YOLOv8 and ESP32\n6) DocsVerse - Document Research Chatbot with RAG and OCR\n7) SynapTrack - Parkinson's Detection using EEG analysis\n8) Data Orchestrate - Distributed File Sync with Java and Kubernetes\n9) Airfield Wildlife Risk Classification - Real-time bird detection system\n10) MedTech Diagnostic LLM Pipeline - AI diagnostic pipeline with medical image segmentation\n11) IRIS Club Website - Full-stack platform with payment integration\n12) PlantWise - Ayurvedic AI Companion (Top 25 at SIH 2024)\n13) Driver Safety Monitoring System - Embedded system for monitoring driver behavior"
+    },
+    {
+        "question": "Has Kushagra Singh published any research papers?",
+        "answer": "Yes, Kushagra Singh co-authored a research paper titled 'Domain-Specific Conversational AI for IRIS MITWPU: From Research Paper to Production' which was published in the IEEE International Conference on Information, Communication and Computing Technology (ICoICC) 2025. The paper presents a comprehensive comparison between Retrieval-Augmented Generation (RAG) and Fine-Tuned Transformer approaches for implementing domain-specific chatbots. He implemented a RAG pipeline using LangChain, HuggingFace embeddings, FAISS, and LLaMA-3 70B model via Groq API, and built a fine-tuned DistilBERT model optimized for question-answering tasks."
+    },
+    {
+        "question": "What is Kushagra's experience?",
+        "answer": "Kushagra has diverse professional experience:\n- Technical Head at IRIS, MIT WPU (Aug 2024-Present): Leading technical initiatives, managing the club's website development, and developing an autonomous vehicle module for non-ADAS cars.\n- Machine Learning Research Associate at IIMT University (Jan 2025-Mar 2025): Led an AI-driven machine learning research project for Cardiovascular Disease risk prediction, contributing to a PhD study in healthcare analytics.\n- ML Project Intern at Infosys Springboard (Oct 2024-Dec 2024): Designed and implemented a handwritten digit recognition application using neural networks (MLP, CNN, LeNet5) for MNIST dataset classification."
+    },
+    {
+        "question": "What are Kushagra's achievements?",
+        "answer": "Kushagra has earned several notable achievements:\n- Winner of the Mitsubishi UFJ Financial Group (MUFG) Hackathon 2025\n- Top 18 Finalist at the Bosch BOROSA Hackathon 2025\n- Top 100 out of 260,000+ participants at the Adobe Hackathon 2025\n- Top 25 Finalist at the Smart India Hackathon 2024\n- Finalist at HackMITWPU'24 Ideathon\n- Published researcher in IEEE ICoICC 2025"
+    },
+    {
+        "question": "What is Kushagra's education?",
+        "answer": "Kushagra is pursuing a B.Tech in Computer Science Engineering at MIT World Peace University, Pune (2021-2025). He's currently in his final year and is passionate about AI/ML and Software Development domains."
+    },
+    {
+        "question": "How can I contact Kushagra?",
+        "answer": "You can reach Kushagra through the following channels:\n- Email: kushagraa.n@gmail.com\n- LinkedIn: https://www.linkedin.com/in/kushagra-anit-singh/\n- GitHub: https://github.com/kushagra-a-singh\n- Google Scholar: https://scholar.google.com/citations?user=upUymaUAAAAJ&hl=en\n- Linktree: https://linktr.ee/kushagra_singh\n\nYou can also use the contact form on his portfolio website."
+    },
+    {
+        "question": "Tell me about the Adobe Hackathon project",
+        "answer": "For the Adobe Hackathon 2025, Kushagra built an AI-powered PDF analysis platform for semantic search, cross-document insights, and intelligent summarization using all-MiniLM-L6-v2 embeddings. He integrated Google Gemini LLM and Azure Speech Services for context-aware reasoning and natural voice podcast generation. The project was deployed on AWS with Dockerized microservices and optimized vector indexing for <3s query latency. This project placed in the Top 100 out of 260,000+ participants."
+    },
+    {
+        "question": "Tell me about the Mitsubishi Hackathon project",
+        "answer": "Kushagra won the Mitsubishi UFJ Financial Group (MUFG) Hackathon 2025 by developing an AI-powered financial assistant for personalized retirement planning. He developed a voice-enabled financial advisor dashboard with ML-driven retirement projections, portfolio insights, and real-time AI recommendations. The project integrated XGBoost, Logistic Regression, and KMeans models for user segmentation, risk prediction, and personalized investment suggestions, along with an LLM chatbot with Azure Speech Services for conversational, voice-based financial guidance and automated email updates."
+    },
+    {
+        "question": "What is the Government Research Project?",
+        "answer": "Kushagra is partnering with Central Water and Power Research Station (CWPRS), Government of India, to develop an advanced AI/ML-based velocity estimation system tested at Khadakwasla Dam, Pune. He's implementing pyOpenRiverCam for Large-scale Particle Image Velocimetry (LSPIV) and Space-Time Image Velocimetry (STIV) techniques to accurately measure surface water velocities. The project involves processing high-resolution video data to deliver precise flow analysis, enabling CWPRS's hydrological research and infrastructure monitoring."
+    },
+    {
+        "question": "What is the IRIS Club RAG Chatbot?",
+        "answer": "The IRIS Club RAG Chatbot is a domain-specific AI assistant Kushagra engineered using LLaMA-3 70B, FAISS-based semantic search, and LangChain for efficient IRIS club information retrieval. He published research on hybrid Retrieval-Augmented Generation and fine-tuned transformer models for chatbot implementation, achieving 0.92 BERTScore accuracy. The chatbot was implemented via LangChain, HuggingFace embeddings, FAISS, and Groq API, optimized for 10ms query latency and 200+ daily queries."
+    },
+    {
+        "question": "What are Kushagra's web development skills?",
+        "answer": "Kushagra is proficient in full-stack web development with expertise in:\n- Frontend: React, Next.js, TypeScript, HTML, CSS, Bootstrap\n- Backend: Node.js, Express.js, Spring Boot, FastAPI\n- Databases: PostgreSQL, MongoDB, MySQL, MongoDB Atlas\n- Real-time: WebSockets\n- Payment Integration: Razorpay\n- Authentication: Supabase\n- Deployment: AWS, Docker"
+    },
+    {
+        "question": "What are Kushagra's machine learning skills?",
+        "answer": "Kushagra has extensive machine learning expertise including:\n- Frameworks: PyTorch, TensorFlow, Scikit-learn\n- NLP: NLTK, spaCy, HuggingFace, LangChain\n- Computer Vision: OpenCV, YOLOv8\n- Generative AI: LLaMA-3, Retrieval-Augmented Generation\n- Medical AI: MONAI, Swin UNETR\n- Vector Databases: FAISS, ChromaDB\n- Data Processing: Pandas, NumPy\n- Visualization: Matplotlib, Seaborn, Tableau\n- UI: Streamlit, PyQt5, Tkinter"
+    },
+    {
+        "question": "What are Kushagra's embedded systems skills?",
+        "answer": "Kushagra has worked extensively with embedded systems including:\n- Microcontrollers: Arduino, STM32, ESP32, Raspberry Pi\n- Sensors: Ultrasonic Sensors, MQ3 alcohol sensor, accelerometer, GPS, GSM modules\n- Applications: Autonomous vehicle modules, driver safety monitoring systems, traffic management systems\n- Programming: C, C++\n- IoT: MQTT"
+    },
+    {
+        "question": "Tell me about the Bosch Hackathon project",
+        "answer": "For the Bosch BOROSA Hackathon 2025, Kushagra developed an Autonomous Traffic Management System, integrating YOLOv8 for traffic and crosswalk detection with ESP32 hardware for real-time signal control. He implemented MQTT for smooth communication between detection and traffic pods, managing multiple traffic states (GO, SLOW, HALT) with buzzer alerts, demonstrating real-time AI-driven embedded solutions for smart cities. The project used Roboflow to boost detection accuracy and deployed optimized ESP32 firmware for autonomous hardware actuation. This project was selected as a Top 18 Finalist."
+    },
+    {
+        "question": "What is the MedTech Diagnostic LLM Pipeline project?",
+        "answer": "The MedTech Diagnostic LLM Pipeline is an end-to-end AI diagnostic system Kushagra built combining 3D medical image segmentation (MONAI + Swin UNETR), FAISS-based case retrieval, and LLM-driven report generation. He integrated FHIR context retrieval for clinical-grade structured inference and explainable medical reporting. The system was deployed with FastAPI backend + Next.js frontend, fully configurable via YAML and Docker-ready for GPU inference."
+    },
+    {
+        "question": "What big data technologies is Kushagra familiar with?",
+        "answer": "Kushagra is familiar with several big data technologies including:\n- Apache Spark\n- Hadoop Distributed File System (HDFS)\n- Apache Kafka\n- Hive\n- HBase\n- Cloudera\n- Apache Pig\n\nHe has applied these technologies in projects like ForVis (Formula 1 Analytics) where he integrated Apache Spark and HDFS to reduce processing time by 30%."
+    },
+    {
+        "question": "What cloud and DevOps skills does Kushagra have?",
+        "answer": "Kushagra's cloud and DevOps skills include:\n- AWS (Amazon Web Services)\n- Kubernetes\n- Docker\n- CI/CD Pipelines\n- Minikube\n\nHe has demonstrated these skills in projects like the Adobe Hackathon PDF analysis platform (deployed on AWS with Dockerized microservices) and Data Orchestrate (built with cloud-native, microservices-based architecture with Docker/Kubernetes deployment)."
+    },
+    {
+        "question": "What programming languages does Kushagra know?",
+        "answer": "Kushagra is proficient in multiple programming languages including:\n- Python (Advanced): For machine learning, data science, and backend development\n- JavaScript/TypeScript (Advanced): For web development with React and Next.js\n- Java (Intermediate): For enterprise applications and distributed systems\n- C/C++ (Intermediate): For embedded systems and performance-critical applications\n- SQL (Advanced): For database management and queries\n- HTML/CSS (Advanced): For frontend development and styling\n- Bash (Basic): For automation and scripting"
+    },
+    {
+        "question": "Can you tell me about Kushagra's leadership experience?",
+        "answer": "Kushagra has demonstrated strong leadership as the Technical Head of IRIS, MIT WPU's premier technical club, where he:\n- Leads a team of 20+ developers across multiple technical domains\n- Manages the development and maintenance of the club's website and technical infrastructure\n- Organizes technical workshops, hackathons, and knowledge-sharing sessions\n- Mentors junior members in various technical skills and project management\n- Spearheads innovative projects like the autonomous vehicle module and RAG chatbot\n- Collaborates with industry partners and other technical clubs for joint initiatives\n- Represents the club at various technical forums and competitions"
+    },
+    {
+        "question": "What are Kushagra's interests outside of technology?",
+        "answer": "Outside of technology, Kushagra enjoys:\n- Playing Table Tennis and strategic board games\n- Reading science fiction and technical literature\n- Exploring new technologies and attending tech conferences\n- Mentoring junior students in programming and machine learning\n- Listening to music\n- Travelling and exploring new places"
+    },
+    {
+        "question": "How does Kushagra approach problem-solving?",
+        "answer": "Kushagra approaches problem-solving with a methodical and innovative mindset:\n1. First, he thoroughly analyzes the problem to understand its core requirements and constraints\n2. He researches existing solutions and best practices in the domain\n3. He breaks down complex problems into smaller, manageable components\n4. He prioritizes tasks based on impact and dependencies\n5. He implements solutions iteratively, starting with a minimum viable product\n6. He continuously tests and refines his approach based on feedback and results\n7. He documents his process and learnings for future reference\n8. He emphasizes scalable and maintainable solutions over quick fixes\n\nThis approach has served him well in hackathons, research projects, and professional work, allowing him to tackle complex challenges efficiently."
+    },
+    {
+        "question": "What is Kushagra's approach to learning new technologies?",
+        "answer": "Kushagra has a structured approach to learning new technologies:\n1. He starts with understanding the fundamentals and core concepts\n2. He follows official documentation and tutorials to grasp the basics\n3. He builds small proof-of-concept projects to apply what he's learned\n4. He explores advanced features through practical implementation\n5. He participates in communities, forums, and discussion groups\n6. He teaches others to solidify his understanding\n7. He contributes to open-source projects using the technology\n8. He stays updated with the latest developments through newsletters and blogs\n\nThis approach has enabled him to quickly master diverse technologies from machine learning frameworks to embedded systems programming."
+    },
+    {
+        "question": "What are Kushagra's career goals?",
+        "answer": "Kushagra's career goals include:\n- Becoming an expert in AI/ML engineering with a focus on practical applications\n- Contributing to cutting-edge research in machine learning and computer vision\n- Building products that solve real-world problems at scale\n- Leading technical teams in innovative projects\n- Bridging the gap between academic research and industry implementation\n- Mentoring the next generation of technologists\n- Eventually founding a tech startup focused on AI solutions for healthcare or environmental challenges\n- Continuing to publish research papers in prestigious conferences and journals"
+    },
+    {
+        "question": "Tell me about the DocsVerse project",
+        "answer": "DocsVerse is a document research chatbot Kushagra developed that combines OCR (Optical Character Recognition) with RAG (Retrieval-Augmented Generation) to enable intelligent document analysis and question-answering. The system can process multiple document formats (PDF, DOCX, images), extract text using Tesseract OCR, and create embeddings for semantic search. It uses FAISS for efficient vector similarity search and integrates with LLMs to provide contextually relevant answers to user queries about document content. The system includes a user-friendly web interface built with Next.js and features document management capabilities, conversation history, and export functionality."
+    },
+    {
+        "question": "Tell me about the SynapTrack project",
+        "answer": "SynapTrack is an innovative project Kushagra developed for Parkinson's disease detection using EEG (Electroencephalogram) analysis. The system processes raw EEG signals through advanced signal processing techniques including wavelet transforms and feature extraction. It implements a hybrid deep learning model combining CNN and LSTM architectures to detect subtle patterns in brain activity associated with Parkinson's disease. The model achieved 91% accuracy in early-stage detection, significantly improving over traditional diagnostic methods. The project includes a clinician-friendly dashboard for result visualization and patient monitoring, and was developed in collaboration with healthcare professionals to ensure clinical relevance."
+    },
+    {
+        "question": "Tell me about the Data Orchestrate project",
+        "answer": "Data Orchestrate is a distributed file synchronization system Kushagra built using Java and Kubernetes. The system enables real-time file synchronization across multiple devices with conflict resolution capabilities. It implements a microservices architecture with separate services for authentication, file management, synchronization, and notification. The system uses WebSockets for real-time updates and implements a custom versioning system to track file changes. It was deployed using Docker and Kubernetes for scalability and reliability, with automated CI/CD pipelines for continuous deployment. The project demonstrates Kushagra's expertise in distributed systems, cloud-native architecture, and enterprise Java development."
+    },
+    {
+        "question": "Tell me about the Airfield Wildlife Risk Classification project",
+        "answer": "The Airfield Wildlife Risk Classification project is a real-time bird detection system Kushagra developed to enhance aviation safety. The system uses computer vision with YOLOv8 for real-time detection and classification of bird species near airfields. It implements a custom-trained model on a dataset of 50,000+ images of birds commonly found near airports, achieving 94% detection accuracy. The system includes a risk assessment algorithm that evaluates factors like bird size, flock density, and flight patterns to calculate threat levels. It provides real-time alerts to air traffic control through a low-latency notification system and includes a dashboard for historical data analysis and pattern recognition. The project demonstrates Kushagra's expertise in computer vision, embedded systems, and safety-critical applications."
+    },
+    {
+        "question": "Tell me about the PlantWise project",
+        "answer": "PlantWise is an Ayurvedic AI Companion that Kushagra developed, which reached the Top 25 at Smart India Hackathon (SIH) 2024. The system combines computer vision for plant identification with a knowledge base of Ayurvedic medicine to provide personalized health recommendations. It features a mobile application with image recognition capabilities that can identify 250+ medicinal plants with 96% accuracy. The backend implements a recommendation engine that matches plant properties with user health profiles and Ayurvedic principles. The system includes features for tracking usage, providing dosage information, and warning about potential contraindications. It also offers educational content about Ayurvedic practices and sustainable harvesting methods. The project demonstrates Kushagra's ability to combine traditional knowledge with cutting-edge AI technology."
+    },
+    {
+        "question": "Tell me about the Driver Safety Monitoring System project",
+        "answer": "The Driver Safety Monitoring System is an embedded system Kushagra developed for real-time monitoring of driver behavior and alertness. The system uses a combination of sensors including an MQ3 alcohol sensor, accelerometer, and camera to detect signs of impaired or distracted driving. It implements computer vision algorithms to track eye movement and head position for drowsiness detection. The system features real-time alerts through audio warnings and smartphone notifications when potentially dangerous behaviors are detected. It includes a secure data logging system for trip analysis and driver behavior patterns. The hardware is based on ESP32 and Arduino platforms with custom PCB design for automotive integration. The project demonstrates Kushagra's expertise in embedded systems, sensor fusion, and safety-critical applications."
+    },
+    {
+        "question": "What databases is Kushagra familiar with?",
+        "answer": "Kushagra is experienced with various database technologies:\n- Relational Databases: MySQL, PostgreSQL, SQLite\n- NoSQL Databases: MongoDB, MongoDB Atlas\n- Vector Databases: FAISS, ChromaDB, Pinecone\n- Time-Series Databases: InfluxDB\n- Graph Databases: Neo4j (basic knowledge)\n- In-Memory Databases: Redis\n- Big Data Storage: HBase, Hive\n\nHe has applied these database technologies in various projects, implementing complex queries, optimizing performance, designing schemas, and ensuring data integrity and security."
+    },
+    {
+        "question": "What are Kushagra's strengths and weaknesses?",
+        "answer": "Kushagra's strengths include:\n- Technical versatility across multiple domains (AI/ML, web development, embedded systems)\n- Strong problem-solving abilities and analytical thinking\n- Excellent leadership and team management skills\n- Ability to quickly learn and adapt to new technologies\n- Strong communication and documentation skills\n- Proven track record in competitive environments (hackathons, research)\n\nAreas he's working to improve:\n- Balancing perfectionism with pragmatic delivery timelines\n- Delegating tasks more effectively in team settings\n- Focusing on fewer technologies to develop deeper expertise\n- Improving work-life balance while maintaining productivity\n- Enhancing public speaking and presentation skills"
+    },
+    {
+        "question": "How does Kushagra stay updated with technology trends?",
+        "answer": "Kushagra stays updated with technology trends through multiple channels:\n- Following technical blogs and newsletters (Medium, Towards Data Science, HackerNoon)\n- Participating in online communities (Stack Overflow, GitHub, Reddit r/MachineLearning)\n- Attending virtual and in-person tech conferences and meetups\n- Taking online courses on platforms like Coursera, edX, and Udemy\n- Following industry leaders and researchers on Twitter and LinkedIn\n- Contributing to open-source projects\n- Reading academic papers on arXiv and Google Scholar\n- Experimenting with new technologies through personal projects\n- Subscribing to technical YouTube channels and podcasts"
+    },
+    {
+        "question": "What motivates Kushagra in his technical pursuits?",
+        "answer": "Kushagra is motivated by several factors in his technical pursuits:\n- The potential of technology to solve real-world problems and improve lives\n- The intellectual challenge of tackling complex technical problems\n- The continuous learning journey and mastery of new skills\n- The collaborative nature of technical projects and knowledge sharing\n- The tangible impact of his work, especially in healthcare and environmental applications\n- The opportunity to mentor others and contribute to the tech community\n- The intersection of different disciplines and technologies\n- The rapid pace of innovation in AI and machine learning\n- The potential to contribute to cutting-edge research and development"
+    }
+]
