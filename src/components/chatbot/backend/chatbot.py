@@ -388,13 +388,14 @@ def chat():
         # Log to Supabase
         try:
             supabase_url = os.getenv("SUPABASE_URL")
-            supabase_key = os.getenv("SUPABASE_KEY")
+            # Use service role key for backend operations
+            supabase_key = os.getenv("SUPABASE_SERVICE_ROLE_KEY")
             
             if supabase_url and supabase_key:
                 supabase: Client = create_client(supabase_url, supabase_key)
                 
                 log_data = {
-                    "user_id": user_id,
+                    "user_id": user_id,  # Can be None for anonymous users
                     "user_message": query,
                     "bot_response": response,
                     "timestamp": datetime.now(pytz.UTC).isoformat()
