@@ -67,7 +67,7 @@ export const ChatWindow = ({ isOpen, onClose }: ChatWindowProps) => {
   useEffect(() => {
     const checkServerStatus = async () => {
       try {
-        const apiUrl = process.env.NEXT_PUBLIC_API_BASE_URL;
+        const apiUrl = import.meta.env.VITE_API_BASE_URL || 'https://portfolio-chatbot-backend-vtgu.onrender.com';
         const response = await fetch(`${apiUrl}/api/health`);
         if (!response.ok) {
           setIsError(true);
@@ -116,7 +116,7 @@ export const ChatWindow = ({ isOpen, onClose }: ChatWindowProps) => {
       }
 
       // Call Flask backend API
-      const apiUrl = process.env.NEXT_PUBLIC_API_BASE_URL;
+      const apiUrl = import.meta.env.VITE_API_BASE_URL || 'https://portfolio-chatbot-backend-vtgu.onrender.com';
       const response = await fetch(`${apiUrl}/api/chat`, {
         method: 'POST',
         headers: {
