@@ -149,7 +149,7 @@ export function RolesAchievements() {
                 </div>
                 <h3 className="text-2xl font-heading font-semibold">Highlights</h3>
               </div>
-              <div className="space-y-4">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 {achievements.map((achievement, index) => (
                   <motion.div
                     key={index}
@@ -157,14 +157,14 @@ export function RolesAchievements() {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ delay: index * 0.1 }}
-                    className="p-4 bg-secondary/50 rounded-lg border border-border hover:border-accent transition-colors"
+                    className="h-full p-4 bg-secondary/50 rounded-lg border border-border hover:border-accent transition-colors"
                   >
-                    <div className="flex items-start gap-3">
+                    <div className="flex items-start gap-3 h-full">
                       <span className="text-2xl flex-shrink-0">{achievement.icon}</span>
-                      <div>
-                        <div className="flex flex-wrap items-baseline gap-2">
+                      <div className="flex-1">
+                        <div className="flex flex-col sm:flex-row sm:flex-wrap sm:items-baseline gap-1 sm:gap-2">
                           <span className="font-semibold text-foreground">{achievement.title}</span>
-                          <span className="text-sm px-2 py-0.5 rounded-full bg-primary/10 text-primary">
+                          <span className="text-sm px-2 py-0.5 rounded-full bg-primary/10 text-primary self-start sm:self-auto">
                             {achievement.status}
                           </span>
                         </div>

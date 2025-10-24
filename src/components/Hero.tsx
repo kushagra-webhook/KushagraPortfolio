@@ -100,15 +100,15 @@ export function Hero() {
             <div className="bg-card/40 backdrop-blur-md rounded-3xl p-8 md:p-12 border border-primary/10 shadow-2xl">
               <div className="space-y-3 text-left text-sm md:text-base text-muted-foreground leading-relaxed">
                 <p>
-                  I'm a <span className="text-foreground font-semibold">Final Year Computer Science Engineering student at MIT World Peace University, Pune</span>, passionate about building impactful tech solutions at the crossroads of <span className="text-foreground font-semibold">Artificial Intelligence, Machine Learning, Web Development, and Embedded Systems</span>.
+                  I'm a <span className="text-foreground">Final Year Computer Science Engineering student at MIT World Peace University, Pune</span>, passionate about building impactful tech solutions at the crossroads of <span className="text-foreground">Artificial Intelligence, Machine Learning, Web Development, and Embedded Systems</span>.
                 </p>
                 
                 <p>
-                  As the <span className="text-foreground font-semibold">Technical Head of the IRIS Tech Club</span>, I lead a team of developers delivering innovative projects, including the club's official website and autonomous vehicle modules. Recently, we launched a domain-specific conversational AI chatbot, based on research I co-authored and presented at the <span className="text-foreground font-semibold">IEEE International Conference on Information, Communication and Computing Technology (ICoICC) 2025</span>.
+                  As the <span className="text-foreground">Technical Head of the IRIS Tech Club</span>, I lead a team of developers delivering innovative projects, including the club's official website and autonomous vehicle modules. Recently, we launched a domain-specific conversational AI chatbot, based on research I co-authored and presented at the <span className="text-foreground">IEEE International Conference on Information, Communication and Computing Technology (ICoICC) 2025</span>.
                 </p>
                 
                 <p>
-                  I've gained hands-on experience as a <span className="text-foreground font-semibold">Machine Learning Research Associate at IIMT University</span>, contributing to advanced healthcare analytics through PhD-level research using sophisticated ML models and interactive web apps. My internship at <span className="text-foreground font-semibold">Infosys Springboard</span> strengthened my skills in deep learning and computer vision, where I built high-accuracy neural networks.
+                  I've gained hands-on experience as a <span className="text-foreground">Machine Learning Research Associate at IIMT University</span>, contributing to advanced healthcare analytics through PhD-level research using sophisticated ML models and interactive web apps. My internship at <span className="text-foreground">Infosys Springboard</span> strengthened my skills in deep learning and computer vision, where I built high-accuracy neural networks.
                 </p>
                 
                 <div className="h-px bg-gradient-to-r from-transparent via-primary/30 to-transparent my-6" />
@@ -128,7 +128,7 @@ export function Hero() {
                   </div>
                   <div className="flex items-start gap-2">
                     <span className="text-primary mt-1 text-lg">▸</span>
-                    <span><span className="text-foreground font-semibold">Top 100</span> out of 260,000+ participants at the Adobe Hackathon 2025</span>
+                    <span><span className="text-foreground font-semibold">Top 100</span> out of 2,60,000+ participants at the Adobe Hackathon 2025</span>
                   </div>
                   <div className="flex items-start gap-2">
                     <span className="text-primary mt-1 text-lg">▸</span>
@@ -139,11 +139,11 @@ export function Hero() {
                 <div className="h-px bg-gradient-to-r from-transparent via-primary/30 to-transparent my-6" />
                 
                 <p>
-                  My technical toolkit includes <span className="text-foreground font-semibold">Python, C++, PyTorch, TensorFlow, Next.js, Spring Boot, AWS, Docker, LangChain, HuggingFace, FAISS</span>, and more.
+                  My technical toolkit includes <span className="text-foreground">Python, C++, PyTorch, TensorFlow, Next.js, Spring Boot, AWS, Docker, LangChain, HuggingFace, FAISS</span>, and more.
                 </p>
                 
                 <p>
-                  Driven by curiosity and a commitment to <span className="text-foreground font-semibold">real-world impact</span>, I enjoy tackling complex challenges, whether it's developing <span className="text-foreground font-semibold">autonomous driving systems, AI-powered healthcare tools, or scalable cloud-native applications</span>. I'm always excited to connect, collaborate and create solutions that make a difference.
+                  Driven by curiosity and a commitment to <span className="text-foreground">real-world impact</span>, I enjoy tackling complex challenges, whether it's developing <span className="text-foreground">autonomous driving systems, AI-powered healthcare tools, or scalable cloud-native applications</span>. I'm always excited to connect, collaborate and create solutions that make a difference.
                 </p>
               </div>
             </div>
