@@ -20,8 +20,8 @@ const publications = [
 
 export function Publications() {
   return (
-    <section id="publications" className="py-20 px-4">
-      <div className="container max-w-6xl mx-auto">
+    <section id="publications" className="py-20 px-0.5 sm:px-4">
+      <div className="container max-w-[99.5vw] sm:max-w-6xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}

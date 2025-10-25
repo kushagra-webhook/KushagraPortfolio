@@ -42,8 +42,8 @@ export function Hero() {
   }, []);
 
   return (
-    <section className="min-h-screen flex items-center justify-center px-4 pt-36 pb-20 gradient-hero">
-      <div className="container max-w-6xl">
+    <section className="min-h-screen flex items-center justify-center px-0.5 sm:px-4 pt-36 pb-20 gradient-hero">
+      <div className="container max-w-[99.5vw] sm:max-w-6xl">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -108,9 +108,9 @@ export function Hero() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.6 }}
-            className="max-w-5xl mx-auto"
+            className="max-w-5xl mx-auto mt-16 sm:mt-0"
           >
-            <div className="bg-card/40 backdrop-blur-md rounded-3xl p-8 md:p-12 border border-primary/10 shadow-2xl">
+            <div className="bg-card/40 backdrop-blur-md rounded-3xl p-8 md:p-12 border border-primary/10 shadow-2xl mt-16 sm:mt-0">
               <div className="space-y-3 text-left text-sm md:text-base text-muted-foreground leading-relaxed">
                 <p>
                   I'm a <span className="text-foreground">Final Year Computer Science Engineering student at MIT World Peace University, Pune</span>, passionate about building impactful tech solutions at the crossroads of <span className="text-foreground">Artificial Intelligence, Machine Learning, Web Development, and Embedded Systems</span>.
@@ -223,6 +223,132 @@ export function Hero() {
                 Linktree
               </a>
             </Button>
+          </motion.div>
+
+          {/* Mobile Navigation - Go to Section */}
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.9 }}
+            className="md:hidden mt-8"
+          >
+            <div className="bg-card/20 backdrop-blur-sm rounded-2xl p-4 border border-primary/10">
+              <h3 className="text-center text-sm font-medium text-muted-foreground mb-4">Go to Section</h3>
+              <div className="grid grid-cols-2 gap-2">
+                <Button
+                  variant="outline"
+                  size="sm"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    const element = document.querySelector('#experience');
+                    if (element) {
+                      element.scrollIntoView({ behavior: 'smooth' });
+                    }
+                  }}
+                  className="text-xs hover:bg-primary/10 hover:text-primary transition-colors"
+                >
+                  Experience
+                </Button>
+                <Button
+                  variant="outline"
+                  size="sm"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    const element = document.querySelector('#projects');
+                    if (element) {
+                      element.scrollIntoView({ behavior: 'smooth' });
+                    }
+                  }}
+                  className="text-xs hover:bg-primary/10 hover:text-primary transition-colors"
+                >
+                  Projects
+                </Button>
+                <Button
+                  variant="outline"
+                  size="sm"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    const element = document.querySelector('#publications');
+                    if (element) {
+                      element.scrollIntoView({ behavior: 'smooth' });
+                    }
+                  }}
+                  className="text-xs hover:bg-primary/10 hover:text-primary transition-colors"
+                >
+                  Publications
+                </Button>
+                <Button
+                  variant="outline"
+                  size="sm"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    const element = document.querySelector('#gallery');
+                    if (element) {
+                      element.scrollIntoView({ behavior: 'smooth' });
+                    }
+                  }}
+                  className="text-xs hover:bg-primary/10 hover:text-primary transition-colors"
+                >
+                  Gallery
+                </Button>
+                <Button
+                  variant="outline"
+                  size="sm"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    const element = document.querySelector('#skills');
+                    if (element) {
+                      element.scrollIntoView({ behavior: 'smooth' });
+                    }
+                  }}
+                  className="text-xs hover:bg-primary/10 hover:text-primary transition-colors"
+                >
+                  Skills
+                </Button>
+                <Button
+                  variant="outline"
+                  size="sm"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    const element = document.querySelector('#roles');
+                    if (element) {
+                      element.scrollIntoView({ behavior: 'smooth' });
+                    }
+                  }}
+                  className="text-xs hover:bg-primary/10 hover:text-primary transition-colors"
+                >
+                  Roles
+                </Button>
+                <Button
+                  variant="outline"
+                  size="sm"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    const element = document.querySelector('#achievements');
+                    if (element) {
+                      element.scrollIntoView({ behavior: 'smooth' });
+                    }
+                  }}
+                  className="text-xs hover:bg-primary/10 hover:text-primary transition-colors"
+                >
+                  Achievements
+                </Button>
+                <Button
+                  variant="outline"
+                  size="sm"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    const element = document.querySelector('#contact');
+                    if (element) {
+                      element.scrollIntoView({ behavior: 'smooth' });
+                    }
+                  }}
+                  className="text-xs hover:bg-primary/10 hover:text-primary transition-colors"
+                >
+                  Contact
+                </Button>
+              </div>
+            </div>
           </motion.div>
 
           {/* Scroll Indicator */}

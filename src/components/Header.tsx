@@ -63,7 +63,14 @@ export const Header = () => {
     e.preventDefault();
     const element = document.querySelector(href);
     if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
+      // Add a small delay to ensure the element is ready
+      setTimeout(() => {
+        element.scrollIntoView({ 
+          behavior: 'smooth',
+          block: 'start',
+          inline: 'nearest'
+        });
+      }, 100);
       setIsMobileMenuOpen(false);
     }
   };
@@ -97,6 +104,34 @@ export const Header = () => {
           >
             Kushagra Singh
           </motion.a>
+
+          {/* Mobile Header Controls */}
+          <div className="md:hidden flex items-center gap-3">
+            <ThemeToggle />
+            <motion.button
+              className="text-foreground/80 hover:text-foreground transition-colors"
+              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+              aria-label="Toggle menu"
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.9 }}
+            >
+              <svg
+                className="w-6 h-6"
+                fill="none"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="2"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                {isMobileMenuOpen ? (
+                  <path d="M6 18L18 6M6 6l12 12" />
+                ) : (
+                  <path d="M4 6h16M4 12h16M4 18h16" />
+                )}
+              </svg>
+            </motion.button>
+          </div>
 
           {/* Desktop Navigation */}
           <motion.div 
@@ -142,30 +177,6 @@ export const Header = () => {
             <ThemeToggle />
           </motion.div>
 
-          {/* Mobile Menu Button */}
-          <motion.button
-            className="md:hidden text-foreground/80 hover:text-foreground transition-colors"
-            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            aria-label="Toggle menu"
-            whileHover={{ scale: 1.1 }}
-            whileTap={{ scale: 0.9 }}
-          >
-            <svg
-              className="w-6 h-6"
-              fill="none"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth="2"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-            >
-              {isMobileMenuOpen ? (
-                <path d="M6 18L18 6M6 6l12 12" />
-              ) : (
-                <path d="M4 6h16M4 12h16M4 18h16" />
-              )}
-            </svg>
-          </motion.button>
         </div>
 
         {/* Mobile Navigation */}
@@ -197,10 +208,6 @@ export const Header = () => {
                     </motion.a>
                   );
                 })}
-                
-                <div className="pt-2">
-                  <ThemeToggle />
-                </div>
               </div>
             </motion.div>
           )}

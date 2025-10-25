@@ -5,8 +5,8 @@ import { skills } from "@/data/skills";
 
 export function Skills() {
   return (
-    <section id="skills" className="py-20 px-4 bg-secondary/30">
-      <div className="container max-w-6xl mx-auto">
+    <section id="skills" className="py-20 px-0.5 sm:px-4 bg-secondary/30">
+      <div className="container max-w-[99.5vw] sm:max-w-6xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}

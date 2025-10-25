@@ -25,8 +25,8 @@ export function Projects() {
   };
 
   return (
-    <section id="projects" className="py-20 px-4 bg-secondary/30">
-      <div className="container max-w-7xl mx-auto">
+    <section id="projects" className="py-20 px-0.5 sm:px-4 bg-secondary/30">
+      <div className="container max-w-[99.5vw] sm:max-w-7xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
