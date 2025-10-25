@@ -34,11 +34,13 @@ load_dotenv()
 
 # Force garbage collection at startup
 import gc
+
 gc.collect()
 
 # Handle encoding for Windows
 if sys.platform.startswith("win"):
     import codecs
+
     sys.stdout = codecs.getwriter("utf-8")(sys.stdout.detach())
     sys.stderr = codecs.getwriter("utf-8")(sys.stderr.detach())
 
@@ -62,7 +64,10 @@ print("Initializing Flask app...")
 app = Flask(__name__)
 
 # Get allowed origins from environment variable or use default in development
-ALLOWED_ORIGINS = os.getenv("ALLOWED_ORIGINS", "http://localhost:3000,http://localhost:5173,http://localhost:5800,http://localhost:8080,https://kushagra-singh.vercel.app/,https://kushagra-singh.vercel.app")
+ALLOWED_ORIGINS = os.getenv(
+    "ALLOWED_ORIGINS",
+    "http://localhost:3000,http://localhost:5173,http://localhost:5800,http://localhost:8080,https://kushagra-singh.vercel.app/,https://kushagra-singh.vercel.app",
+)
 allowed_origins = [origin.strip() for origin in ALLOWED_ORIGINS.split(",")]
 
 # Enable CORS with specific origins
@@ -74,6 +79,7 @@ CORS(
     methods=["GET", "POST", "OPTIONS"],
 )
 print("Flask app initialized with CORS")
+
 
 # Rate limiting
 class RateLimiter:
@@ -96,6 +102,7 @@ class RateLimiter:
             self.requests[client_ip].append(now)
             return True
         return False
+
 
 rate_limiter = RateLimiter(max_requests=30, window_seconds=60)  # 30 requests per minute
 
@@ -127,17 +134,22 @@ def make_links_clickable(text):
     text = clean_malformed_html(text)
 
     # Convert **text** to <strong>text</strong> for bold formatting
-    bold_pattern = re.compile(r'\*\*(.*?)\*\*')
-    text = bold_pattern.sub(r'<strong class="font-semibold text-foreground">\1</strong>', text)
+    bold_pattern = re.compile(r"\*\*(.*?)\*\*")
+    text = bold_pattern.sub(
+        r'<strong class="font-semibold text-foreground">\1</strong>', text
+    )
 
     # First, let's check if the text already contains HTML links
     if "<a href=" in text:
         # If HTML links already exist, don't process further
         return text
-        
+
     # Handle URLs in backticks: `http://example.com`
-    backtick_pattern = re.compile(r'`(https?://[^`]+)`')
-    text = backtick_pattern.sub(r'<a href="\1" target="_blank" rel="noopener noreferrer" class="text-blue-600 hover:text-blue-800 hover:underline font-medium border-b border-blue-300 pb-0.5 transition-colors">\1</a>', text)
+    backtick_pattern = re.compile(r"`(https?://[^`]+)`")
+    text = backtick_pattern.sub(
+        r'<a href="\1" target="_blank" rel="noopener noreferrer" class="text-blue-600 hover:text-blue-800 hover:underline font-medium border-b border-blue-300 pb-0.5 transition-colors">\1</a>',
+        text,
+    )
 
     # Pattern to match URLs that are not already in HTML tags
     url_pattern = re.compile(r'(?<!["\'>])(https?://[^\s<>"]+?)(?=[.,!?:;\)]?(?:\s|$))')
@@ -155,16 +167,23 @@ def make_links_clickable(text):
         return f'<a href="{url}" target="_blank" rel="noopener noreferrer" class="text-blue-600 hover:text-blue-800 hover:underline font-medium border-b border-blue-300 pb-0.5 transition-colors">{url}</a>'
 
     text = url_pattern.sub(replace_match, text)
-    
+
     # Format numbered lists for better styling
-    numbered_list_pattern = re.compile(r'^(\d+)\.\s+(.+)$', re.MULTILINE)
-    text = numbered_list_pattern.sub(r'<div class="flex items-start mb-3"><span class="font-bold mr-2 text-purple-600 min-w-[20px] text-right">\1.</span><span class="flex-1">\2</span></div>', text)
-    
+    numbered_list_pattern = re.compile(r"^(\d+)\.\s+(.+)$", re.MULTILINE)
+    text = numbered_list_pattern.sub(
+        r'<div class="flex items-start mb-3"><span class="font-bold mr-2 text-purple-600 min-w-[20px] text-right">\1.</span><span class="flex-1">\2</span></div>',
+        text,
+    )
+
     # Format bullet points for better styling
-    bullet_list_pattern = re.compile(r'^[-•]\s+(.+)$', re.MULTILINE)
-    text = bullet_list_pattern.sub(r'<div class="flex items-start mb-3 ml-2"><span class="mr-2 text-purple-600">•</span><span class="flex-1">\1</span></div>', text)
-    
+    bullet_list_pattern = re.compile(r"^[-•]\s+(.+)$", re.MULTILINE)
+    text = bullet_list_pattern.sub(
+        r'<div class="flex items-start mb-3 ml-2"><span class="mr-2 text-purple-600">•</span><span class="flex-1">\1</span></div>',
+        text,
+    )
+
     return text
+
 
 # Load embeddings and FAISS index
 print("Setting up file paths...")
@@ -191,7 +210,9 @@ SUPABASE_URL = os.getenv("SUPABASE_URL")
 SUPABASE_KEY = os.getenv("SUPABASE_KEY")
 
 if not HF_API_URL or not HF_API_TOKEN:
-    print("Warning: HF_API_URL or HF_API_TOKEN not set. Embedding functionality will be limited.")
+    print(
+        "Warning: HF_API_URL or HF_API_TOKEN not set. Embedding functionality will be limited."
+    )
 
 if not GROQ_API_KEY:
     print("Warning: GROQ_API_KEY not set. LLM functionality will be limited.")
@@ -214,10 +235,13 @@ if SUPABASE_URL and SUPABASE_KEY:
     except Exception as e:
         print(f"Error initializing Supabase client: {e}")
 else:
-    print("Warning: SUPABASE_URL or SUPABASE_KEY not set. Logging functionality will be limited.")
+    print(
+        "Warning: SUPABASE_URL or SUPABASE_KEY not set. Logging functionality will be limited."
+    )
 
 # Query embedding cache
 query_embedding_cache = {}
+
 
 def embed_query(query):
     """Get embeddings for a query using HuggingFace API"""
@@ -234,22 +258,28 @@ def embed_query(query):
                 json={"inputs": query},
                 timeout=30,
             )
-            
+
             if response.status_code == 200:
                 embedding = response.json()
                 query_embedding_cache[query] = embedding
                 return embedding
-            
-            if response.status_code == 429 and attempt < max_retries - 1:  # Rate limited
+
+            if (
+                response.status_code == 429 and attempt < max_retries - 1
+            ):  # Rate limited
                 wait_time = (2**attempt) * 2  # Exponential backoff
-                print(f"Rate limited, waiting {wait_time} seconds before retry {attempt + 1}")
+                print(
+                    f"Rate limited, waiting {wait_time} seconds before retry {attempt + 1}"
+                )
                 time.sleep(wait_time)
                 continue
-                
+
             # If we get here, there was an error
-            print(f"Error from HuggingFace API: {response.status_code} - {response.text}")
+            print(
+                f"Error from HuggingFace API: {response.status_code} - {response.text}"
+            )
             return None
-            
+
         except Exception as e:
             print(f"Exception during embedding API call: {e}")
             if attempt < max_retries - 1:
@@ -259,52 +289,48 @@ def embed_query(query):
             else:
                 print("Max retries reached. Returning None.")
                 return None
-    
+
     return None
+
 
 def search_similar_texts(query_embedding, top_k=5):
     """Search for similar texts using FAISS index"""
     if query_embedding is None:
         return []
-    
+
     try:
         # Convert to numpy array and ensure correct shape
-        query_embedding_np = np.array(query_embedding).astype('float32').reshape(1, -1)
-        
+        query_embedding_np = np.array(query_embedding).astype("float32").reshape(1, -1)
+
         # Search the FAISS index
         distances, indices = index.search(query_embedding_np, top_k)
-        
+
         # Get the corresponding texts
         results = []
         for i, idx in enumerate(indices[0]):
             if idx < len(texts):
-                results.append({
-                    "text": texts[idx],
-                    "score": float(distances[0][i])
-                })
-        
+                results.append({"text": texts[idx], "score": float(distances[0][i])})
+
         return results
     except Exception as e:
         print(f"Error during FAISS search: {e}")
         return []
+
 
 def log_conversation(user_id, user_message, bot_response):
     """Log conversation to Supabase if available"""
     if not supabase_client:
         print("Supabase client not initialized, skipping logging")
         return
-    
+
     try:
         # For anonymous users (no user_id), set user_id to NULL
-        log_data = {
-            "user_message": user_message,
-            "bot_response": bot_response
-        }
-        
+        log_data = {"user_message": user_message, "bot_response": bot_response}
+
         # Only add user_id if it's provided and not None
         if user_id:
             log_data["user_id"] = user_id
-            
+
         # Execute the insert with detailed error handling
         result = supabase_client.table("chatbot_logs").insert(log_data).execute()
         print(f"Conversation logged to Supabase: {result}")
@@ -313,48 +339,150 @@ def log_conversation(user_id, user_message, bot_response):
         print(f"Error details: {str(e)}")
         # Print the traceback for debugging
         import traceback
+
         traceback.print_exc()
 
-def generate_response(query, similar_texts, user_id=None):
+
+def generate_response(query, similar_texts, user_id=None, retry_count=0):
     """Generate a response using Groq LLM"""
     if not GROQ_API_KEY:
         return "I'm sorry, but the LLM service is currently unavailable. Please try again later."
-    
+
+    max_retries = 2  # Maximum number of retries for corrupted responses
+
     try:
         # Create context from similar texts
         context = "\n\n".join([item["text"] for item in similar_texts])
-        
+
+        # Limit context length to prevent issues
+        if len(context) > 4000:
+            context = context[:4000] + "..."
+
         # Print debug information
         print(f"Generating response for query: {query}")
         print(f"Context length: {len(context)} characters")
         print(f"Number of similar texts: {len(similar_texts)}")
-        
+
         # Use the initialized LLM client
         system_message = "You are an AI assistant for Kushagra's portfolio website. Use the following context to answer questions. If you don't know the answer, just say that you don't know."
         user_message = f"Context:\n{context}\n\nQuestion: {query}"
-        
+
         print("Sending request to Groq API...")
-        response = llm.invoke([
-            {"role": "system", "content": system_message},
-            {"role": "user", "content": user_message}
-        ])
-        
+        response = llm.invoke(
+            [
+                {"role": "system", "content": system_message},
+                {"role": "user", "content": user_message},
+            ]
+        )
+
         print("Successfully received response from Groq API")
         response_text = response.content
-        
+
+        # Validate response text
+        if not response_text or len(response_text.strip()) == 0:
+            print("Warning: Empty response from LLM")
+            return "I'm sorry, but I couldn't generate a proper response. Please try again."
+
+        # Check for corrupted/garbled text patterns
+        corrupted_patterns = [
+            "Injected",
+            "BuilderFactory",
+            "externalActionCode",
+            "contaminants",
+            "roscope",
+            "Toastr",
+            "Britain",
+            "PSI",
+            "MAV",
+            "Basel",
+            "Succ",
+            "visitInsn",
+            "PRODUCTION",
+            "slider",
+            "dateTime",
+            "Size",
+            "both",
+            "exposition",
+            "from",
+            "to",
+            "the",
+            "and",
+            "or",
+            "but",
+            "in",
+            "on",
+            "at",
+        ]
+
+        # Check for the specific corrupted response pattern you encountered
+        if "—fromInjectedInjected ToastrBritainBuilderFactory" in response_text:
+            print("Warning: Detected specific corrupted response pattern")
+            if retry_count < max_retries:
+                print(f"Retrying request (attempt {retry_count + 1}/{max_retries})")
+                time.sleep(1)
+                return generate_response(query, similar_texts, user_id, retry_count + 1)
+            return "I'm sorry, but I encountered an issue generating a proper response. Please try again."
+
+        # Count occurrences of corrupted patterns
+        corrupted_count = sum(
+            response_text.count(pattern) for pattern in corrupted_patterns
+        )
+
+        # Check for excessive repetition of corrupted patterns
+        if corrupted_count > 10 or any(
+            response_text.count(pattern) > 5 for pattern in corrupted_patterns
+        ):
+            print(
+                f"Warning: Detected corrupted response from LLM (corrupted patterns: {corrupted_count})"
+            )
+            if retry_count < max_retries:
+                print(f"Retrying request (attempt {retry_count + 1}/{max_retries})")
+                time.sleep(1)  # Brief delay before retry
+                return generate_response(query, similar_texts, user_id, retry_count + 1)
+            return "I'm sorry, but I encountered an issue generating a proper response. Please try again."
+
+        # Check for excessive repetition of any single word (another sign of corruption)
+        words = response_text.split()
+        if len(words) > 0:
+            word_counts = {}
+            for word in words:
+                word_counts[word] = word_counts.get(word, 0) + 1
+
+            # If any word appears more than 20% of the time, it's likely corrupted
+            max_word_count = max(word_counts.values())
+            if max_word_count > len(words) * 0.2:
+                print(f"Warning: Detected excessive word repetition in LLM response")
+                if retry_count < max_retries:
+                    print(f"Retrying request (attempt {retry_count + 1}/{max_retries})")
+                    time.sleep(1)  # Brief delay before retry
+                    return generate_response(
+                        query, similar_texts, user_id, retry_count + 1
+                    )
+                return "I'm sorry, but I encountered an issue generating a proper response. Please try again."
+
+        # Check for very short responses that might be corrupted
+        if len(response_text.strip()) < 10:
+            print("Warning: Response too short, likely corrupted")
+            if retry_count < max_retries:
+                print(f"Retrying request (attempt {retry_count + 1}/{max_retries})")
+                time.sleep(1)  # Brief delay before retry
+                return generate_response(query, similar_texts, user_id, retry_count + 1)
+            return "I'm sorry, but I couldn't generate a proper response. Please try again."
+
         # Format the response
         formatted_response = make_links_clickable(response_text)
-        
+
         # Log the conversation
         if user_id:
             log_conversation(user_id, query, formatted_response)
-        
+
         return formatted_response
-    
+
     except Exception as e:
         print(f"Error generating response: {e}")
         traceback.print_exc()  # Print full traceback for debugging
         return "I'm sorry, but I encountered an error while processing your request. Please try again later."
+
 
 # API endpoints
 @app.route("/api/chat", methods=["POST"])
@@ -362,86 +490,81 @@ def chat():
     """Handle chat requests"""
     # Get client IP for rate limiting
     client_ip = request.remote_addr
-    
+
     # Check rate limit
     if not rate_limiter.is_allowed(client_ip):
-        return jsonify({
-            "error": "Rate limit exceeded. Please try again later."
-        }), 429
-    
+        return jsonify({"error": "Rate limit exceeded. Please try again later."}), 429
+
     # Get request data
     data = request.json
     query = data.get("message", "")
     user_id = data.get("user_id", None)
-    
+
     if not query:
-        return jsonify({
-            "error": "No message provided"
-        }), 400
-    
+        return jsonify({"error": "No message provided"}), 400
+
     try:
         # Get query embedding
         query_embedding = embed_query(query)
-        
+
         # Search for similar texts
         similar_texts = search_similar_texts(query_embedding)
-        
+
         # Generate response
         response = generate_response(query, similar_texts, user_id)
-        
+
         # Log to Supabase
         try:
             supabase_url = os.getenv("SUPABASE_URL")
             # Use service role key for backend operations
             supabase_key = os.getenv("SUPABASE_SERVICE_ROLE_KEY")
-            
+
             if supabase_url and supabase_key:
                 supabase: Client = create_client(supabase_url, supabase_key)
-                
+
                 log_data = {
                     "user_id": user_id,  # Can be None for anonymous users
                     "user_message": query,
                     "bot_response": response,
-                    "timestamp": datetime.now(pytz.UTC).isoformat()
+                    "timestamp": datetime.now(pytz.UTC).isoformat(),
                 }
-                
+
                 result = supabase.table("chatbot_logs").insert(log_data).execute()
                 print(f"Logged chat interaction: {result}")
             else:
                 print("Supabase credentials not found, skipping logging")
-                
+
         except Exception as log_error:
             print(f"Error logging to Supabase: {log_error}")
             # Don't fail the request if logging fails
-        
+
         # Return the response
-        return jsonify({
-            "response": response
-        })
+        return jsonify({"response": response})
     except Exception as e:
         print(f"Error in chat endpoint: {str(e)}")
-        return jsonify({
-            "response": "I'm sorry, but I encountered an error while processing your request. Please try again later."
-        })
+        return jsonify(
+            {
+                "response": "I'm sorry, but I encountered an error while processing your request. Please try again later."
+            }
+        )
+
 
 @app.route("/api/health", methods=["GET"])
 def health_check():
     """Health check endpoint"""
-    return jsonify({
-        "status": "ok",
-        "timestamp": time.time()
-    })
+    return jsonify({"status": "ok", "timestamp": time.time()})
+
 
 # Run the app
 if __name__ == "__main__":
     # Get port from environment variable (Render sets PORT, local dev can use CHATBOT_PORT)
     port = int(os.getenv("PORT", os.getenv("CHATBOT_PORT", 5800)))
     debug_mode = os.getenv("FLASK_ENV", "production") == "development"
-    
+
     # Print environment info
     env_type = "Development" if debug_mode else "Production"
     print(f"Running in {env_type} mode on port {port}")
     print(f"Allowed origins: {allowed_origins}")
-    
+
     app.run(host="0.0.0.0", port=port, debug=debug_mode)
     print(f"Flask app running on port {port}")

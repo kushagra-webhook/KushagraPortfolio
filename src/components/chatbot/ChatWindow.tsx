@@ -119,6 +119,27 @@ export const ChatWindow = ({ isOpen, onClose }: ChatWindowProps) => {
     return "That's an interesting question! For detailed information, please explore the different sections of this portfolio or use the contact form to reach out directly.";
   };
 
+  const isCorruptedResponse = (text: string): boolean => {
+    const corruptedPatterns = [
+      "Injected", "BuilderFactory", "externalActionCode", "contaminants", 
+      "roscope", "Toastr", "Britain", "PSI", "MAV", "Basel", "Succ",
+      "visitInsn", "PRODUCTION", "slider", "dateTime", "Size", "both"
+    ];
+    
+    // Check for specific corrupted response pattern
+    if (text.includes("—fromInjectedInjected ToastrBritainBuilderFactory")) {
+      return true;
+    }
+    
+    // Count corrupted patterns
+    const corruptedCount = corruptedPatterns.reduce((count, pattern) => 
+      count + (text.split(pattern).length - 1), 0
+    );
+    
+    // If more than 10 corrupted patterns found, it's likely corrupted
+    return corruptedCount > 10;
+  };
+
   const handleSend = async () => {
     if (!input.trim() || isTyping) return;
 
@@ -183,6 +204,18 @@ export const ChatWindow = ({ isOpen, onClose }: ChatWindowProps) => {
       }
 
       const data = await response.json();
+      
+      // Check if the response is corrupted
+      if (isCorruptedResponse(data.response)) {
+        console.warn('Detected corrupted response from backend, using fallback');
+        const botMessage: Message = { 
+          sender: 'bot', 
+          text: "I'm having trouble processing your request right now. Please try again or explore the portfolio sections directly."
+        };
+        setMessages((prev) => [...prev, botMessage]);
+        return;
+      }
+      
       const botMessage: Message = { 
         sender: 'bot', 
         text: data.response,
