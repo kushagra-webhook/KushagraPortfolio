@@ -26,13 +26,13 @@ const WelcomeMessage = () => (
   <motion.div
     initial={{ opacity: 0, y: 20 }}
     animate={{ opacity: 1, y: 0 }}
-    className="text-center p-6 bg-gradient-to-r from-purple-50 to-pink-50 dark:from-purple-900/20 dark:to-pink-900/20 rounded-2xl border border-purple-100 dark:border-purple-800"
+    className="text-center p-4 bg-gradient-to-r from-purple-50 to-pink-50 dark:from-purple-900/20 dark:to-pink-900/20 rounded-xl border border-purple-100 dark:border-purple-800"
   >
-    <div className="w-12 h-12 mx-auto mb-4 rounded-full bg-gradient-to-r from-purple-600 to-pink-600 flex items-center justify-center">
-      <span className="text-2xl">👋</span>
+    <div className="w-9 h-9 mx-auto mb-1 rounded-full bg-gradient-to-r from-purple-600 to-pink-600 flex items-center justify-center">
+      <span className="text-lg">👋</span>
     </div>
-    <h3 className="text-lg font-semibold mb-2">Welcome!</h3>
-    <p className="text-sm text-muted-foreground">
+    <h3 className="text-sm font-semibold">Welcome!</h3>
+    <p className="text-xs text-muted-foreground mt-0.5">
       I'm here to help you learn more about Kushagra Singh. Feel free to ask me anything!
     </p>
   </motion.div>
@@ -218,7 +218,7 @@ export const ChatWindow = ({ isOpen, onClose }: ChatWindowProps) => {
   return (
     <AnimatePresence>
       <motion.div
-        className="fixed bottom-4 right-4 w-[470px] max-w-[calc(100vw-2rem)] h-[85vh] max-h-[calc(100vh-2rem)] bg-background rounded-2xl shadow-2xl z-[100] flex flex-col overflow-hidden border border-border"
+        className="fixed bottom-4 right-4 w-[420px] max-w-[calc(100vw-2rem)] h-[79vh] max-h-[calc(100vh-3rem)] bg-background rounded-2xl shadow-2xl z-[100] flex flex-col overflow-hidden border border-border"
         initial={{ opacity: 0, y: 50, scale: 0.9 }}
         animate={{ opacity: 1, y: 0, scale: 1 }}
         exit={{ opacity: 0, y: 50, scale: 0.9 }}
@@ -262,7 +262,7 @@ export const ChatWindow = ({ isOpen, onClose }: ChatWindowProps) => {
         </div>
 
         {/* Messages */}
-        <div className="flex-1 overflow-y-auto p-4 space-y-4 bg-gradient-to-b from-background to-muted/20">
+        <div className="flex-1 overflow-y-auto p-3 space-y-3 bg-gradient-to-b from-background to-muted/20">
           {messages.length === 0 && <WelcomeMessage />}
           
           {messages.map((msg, index) => (
@@ -273,7 +273,7 @@ export const ChatWindow = ({ isOpen, onClose }: ChatWindowProps) => {
               className={`flex ${msg.sender === 'user' ? 'justify-end' : 'justify-start'}`}
             >
               <div
-                className={`max-w-[80%] p-4 rounded-2xl ${
+                className={`max-w-[80%] p-3 rounded-xl ${
                   msg.sender === 'user'
                     ? 'bg-gradient-to-r from-purple-500 to-pink-500 text-white rounded-br-md'
                     : 'bg-card text-foreground rounded-bl-md border border-border shadow-sm'
