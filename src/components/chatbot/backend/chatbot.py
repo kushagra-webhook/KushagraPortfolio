@@ -343,12 +343,10 @@ def log_conversation(user_id, user_message, bot_response):
         traceback.print_exc()
 
 
-def generate_response(query, similar_texts, user_id=None, retry_count=0):
+def generate_response(query, similar_texts, user_id=None):
     """Generate a response using Groq LLM"""
     if not GROQ_API_KEY:
         return "I'm sorry, but the LLM service is currently unavailable. Please try again later."
-
-    max_retries = 2  # Maximum number of retries for corrupted responses
 
     try:
         # Create context from similar texts
@@ -383,7 +381,7 @@ def generate_response(query, similar_texts, user_id=None, retry_count=0):
             print("Warning: Empty response from LLM")
             return "I'm sorry, but I couldn't generate a proper response. Please try again."
 
-        # Check for corrupted/garbled text patterns
+        # Check for corrupted/garbled text patterns (only specific corrupted patterns)
         corrupted_patterns = [
             "Injected",
             "BuilderFactory",
@@ -403,70 +401,28 @@ def generate_response(query, similar_texts, user_id=None, retry_count=0):
             "Size",
             "both",
             "exposition",
-            "from",
-            "to",
-            "the",
-            "and",
-            "or",
-            "but",
-            "in",
-            "on",
-            "at",
         ]
 
         # Check for the specific corrupted response pattern you encountered
         if "—fromInjectedInjected ToastrBritainBuilderFactory" in response_text:
             print("Warning: Detected specific corrupted response pattern")
-            if retry_count < max_retries:
-                print(f"Retrying request (attempt {retry_count + 1}/{max_retries})")
-                time.sleep(1)
-                return generate_response(query, similar_texts, user_id, retry_count + 1)
             return "I'm sorry, but I encountered an issue generating a proper response. Please try again."
 
-        # Count occurrences of corrupted patterns
+        # Check for corrupted patterns (only if multiple specific patterns appear)
         corrupted_count = sum(
             response_text.count(pattern) for pattern in corrupted_patterns
         )
 
-        # Check for excessive repetition of corrupted patterns
-        if corrupted_count > 10 or any(
-            response_text.count(pattern) > 5 for pattern in corrupted_patterns
-        ):
+        # Only flag as corrupted if we see multiple corrupted patterns (more than 5)
+        if corrupted_count > 5:
             print(
                 f"Warning: Detected corrupted response from LLM (corrupted patterns: {corrupted_count})"
             )
-            if retry_count < max_retries:
-                print(f"Retrying request (attempt {retry_count + 1}/{max_retries})")
-                time.sleep(1)  # Brief delay before retry
-                return generate_response(query, similar_texts, user_id, retry_count + 1)
             return "I'm sorry, but I encountered an issue generating a proper response. Please try again."
-
-        # Check for excessive repetition of any single word (another sign of corruption)
-        words = response_text.split()
-        if len(words) > 0:
-            word_counts = {}
-            for word in words:
-                word_counts[word] = word_counts.get(word, 0) + 1
-
-            # If any word appears more than 20% of the time, it's likely corrupted
-            max_word_count = max(word_counts.values())
-            if max_word_count > len(words) * 0.2:
-                print(f"Warning: Detected excessive word repetition in LLM response")
-                if retry_count < max_retries:
-                    print(f"Retrying request (attempt {retry_count + 1}/{max_retries})")
-                    time.sleep(1)  # Brief delay before retry
-                    return generate_response(
-                        query, similar_texts, user_id, retry_count + 1
-                    )
-                return "I'm sorry, but I encountered an issue generating a proper response. Please try again."
 
         # Check for very short responses that might be corrupted
         if len(response_text.strip()) < 10:
             print("Warning: Response too short, likely corrupted")
-            if retry_count < max_retries:
-                print(f"Retrying request (attempt {retry_count + 1}/{max_retries})")
-                time.sleep(1)  # Brief delay before retry
-                return generate_response(query, similar_texts, user_id, retry_count + 1)
             return "I'm sorry, but I couldn't generate a proper response. Please try again."
 
         # Format the response
@@ -475,6 +431,9 @@ def generate_response(query, similar_texts, user_id=None, retry_count=0):
         # Log the conversation
         if user_id:
             log_conversation(user_id, query, formatted_response)
+
+        # Force garbage collection to prevent memory leaks
+        gc.collect()
 
         return formatted_response
 
@@ -538,10 +497,15 @@ def chat():
             print(f"Error logging to Supabase: {log_error}")
             # Don't fail the request if logging fails
 
+        # Force garbage collection to prevent memory leaks
+        gc.collect()
+
         # Return the response
         return jsonify({"response": response})
     except Exception as e:
         print(f"Error in chat endpoint: {str(e)}")
+        # Force garbage collection even on error
+        gc.collect()
         return jsonify(
             {
                 "response": "I'm sorry, but I encountered an error while processing your request. Please try again later."

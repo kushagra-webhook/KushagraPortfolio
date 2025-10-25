@@ -136,8 +136,8 @@ export const ChatWindow = ({ isOpen, onClose }: ChatWindowProps) => {
       count + (text.split(pattern).length - 1), 0
     );
     
-    // If more than 10 corrupted patterns found, it's likely corrupted
-    return corruptedCount > 10;
+    // Only flag as corrupted if we see multiple corrupted patterns (more than 5)
+    return corruptedCount > 5;
   };
 
   const handleSend = async () => {
