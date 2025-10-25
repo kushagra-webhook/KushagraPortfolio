@@ -7,7 +7,7 @@ import { copyToClipboard } from "@/utils/clipboard";
 
 const taglines = [
   "Crafting Intelligent Systems with Scalable AI Solutions.",
-  "Bridging AI Research and Full-Stack Engineering.",
+  "Bridging AI Research and Software Engineering.",
   "Building Purpose-Driven Software for Real-World Impact.",
   "Empowering AI-Driven Healthcare & Financial Insights.",
   "Engineering Next-Gen AI Systems with Cutting-Edge Research.",
