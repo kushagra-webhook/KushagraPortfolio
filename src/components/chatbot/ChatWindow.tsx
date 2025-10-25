@@ -387,6 +387,10 @@ export const ChatWindow = ({ isOpen, onClose }: ChatWindowProps) => {
 
 // Add this function before the return statement in the ChatWindow component
 function processLinks(text, lineIndex) {
+  // First handle bold formatting **text** -> <strong>text</strong>
+  const boldRegex = /\*\*(.*?)\*\*/g;
+  let processedText = text.replace(boldRegex, '<strong class="font-semibold text-foreground">$1</strong>');
+  
   // Regular expression to find URLs in text, including those in backticks
   const urlRegex = /`?(https?:\/\/[^\s`]+)`?/g;
   const parts = [];
@@ -394,10 +398,16 @@ function processLinks(text, lineIndex) {
   let match;
   
   // Find all URLs in the text
-  while ((match = urlRegex.exec(text)) !== null) {
+  while ((match = urlRegex.exec(processedText)) !== null) {
     // Add text before the URL
     if (match.index > lastIndex) {
-      parts.push(text.substring(lastIndex, match.index));
+      const beforeText = processedText.substring(lastIndex, match.index);
+      // Check if this text contains HTML (like <strong> tags)
+      if (beforeText.includes('<strong>')) {
+        parts.push(<span key={`text-${lineIndex}-${parts.length}`} dangerouslySetInnerHTML={{ __html: beforeText }} />);
+      } else {
+        parts.push(beforeText);
+      }
     }
     
     // Extract the URL, removing backticks if present
@@ -424,11 +434,17 @@ function processLinks(text, lineIndex) {
   }
   
   // Add any remaining text
-  if (lastIndex < text.length) {
-    parts.push(text.substring(lastIndex));
+  if (lastIndex < processedText.length) {
+    const remainingText = processedText.substring(lastIndex);
+    // Check if this text contains HTML (like <strong> tags)
+    if (remainingText.includes('<strong>')) {
+      parts.push(<span key={`text-${lineIndex}-${parts.length}`} dangerouslySetInnerHTML={{ __html: remainingText }} />);
+    } else {
+      parts.push(remainingText);
+    }
   }
   
-  // If we found links, return the processed parts
+  // If we found links or HTML, return the processed parts
   if (parts.length > 0) {
     return <>{parts}</>;
   }

@@ -172,6 +172,18 @@ def extract_portfolio_content():
     # Add contact information
     portfolio_data.append("You can reach Kushagra through the following channels: Email: kushagraa.n@gmail.com, LinkedIn: https://www.linkedin.com/in/kushagra-anit-singh/, GitHub: https://github.com/kushagra-a-singh, Google Scholar: https://scholar.google.com/citations?user=upUymaUAAAAJ&hl=en, Linktree: https://linktr.ee/kushagra_singh. You can also use the contact form on his portfolio website.")
     
+    # Add information about the portfolio website and chatbot development
+    portfolio_data.append("Kushagra built this entire portfolio website and chatbot system himself as a personal project to showcase his skills. The portfolio is built with Next.js 14, React, TypeScript, and Tailwind CSS, deployed on Vercel. The chatbot uses a RAG (Retrieval-Augmented Generation) system with Python Flask backend, FAISS vector database, HuggingFace embeddings, and Groq API with LLaMA-3 70B model, deployed on Render.")
+    
+    # Add detailed chatbot development information
+    portfolio_data.append("The chatbot system Kushagra developed includes: Python Flask backend with FAISS vector database for semantic search, HuggingFace all-MiniLM-L6-v2 embeddings for text similarity, Groq API integration with LLaMA-3 70B model for natural language responses, React/TypeScript frontend with real-time chat interface, Supabase integration for conversation logging, and deployment on Render for backend and Vercel for frontend.")
+    
+    # Add portfolio development details
+    portfolio_data.append("Kushagra's portfolio website features: Next.js 14 with React and TypeScript for modern web development, Tailwind CSS for responsive styling and dark mode support, Framer Motion for smooth animations and transitions, custom components and interactive sections, integrated contact forms and chatbot functionality, optimized performance with Next.js best practices, and automatic deployment through Vercel with GitHub integration.")
+    
+    # Add deployment and technical details
+    portfolio_data.append("The deployment strategy includes: Vercel for frontend hosting with global CDN and SSL certificates, Render for Python Flask backend hosting, FAISS vector database for efficient semantic search, HuggingFace API for text embeddings, Groq API for LLM responses, Supabase for conversation logging and analytics, and comprehensive error handling and health checks.")
+    
     return portfolio_data
 
 # Main execution

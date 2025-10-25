@@ -121,10 +121,14 @@ def clean_malformed_html(text):
 def make_links_clickable(text):
     """
     Convert plain text URLs to HTML anchor tags while properly handling trailing punctuation.
-    Also handles URLs in backticks.
+    Also handles URLs in backticks and converts **text** to <strong>text</strong>.
     """
     # First, clean up any malformed HTML
     text = clean_malformed_html(text)
+
+    # Convert **text** to <strong>text</strong> for bold formatting
+    bold_pattern = re.compile(r'\*\*(.*?)\*\*')
+    text = bold_pattern.sub(r'<strong class="font-semibold text-foreground">\1</strong>', text)
 
     # First, let's check if the text already contains HTML links
     if "<a href=" in text:
