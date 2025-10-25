@@ -251,7 +251,7 @@ export const ChatWindow = ({ isOpen, onClose }: ChatWindowProps) => {
   return (
     <AnimatePresence>
       <motion.div
-        className="fixed bottom-4 right-4 w-[420px] max-w-[calc(100vw-2rem)] h-[79vh] max-h-[calc(100vh-3rem)] bg-background rounded-2xl shadow-2xl z-[100] flex flex-col overflow-hidden border border-border"
+        className="fixed bottom-4 right-4 w-[450px] max-w-[calc(100vw-2rem)] h-[79vh] max-h-[calc(100vh-3rem)] bg-background rounded-2xl shadow-2xl z-[100] flex flex-col overflow-hidden border border-border"
         initial={{ opacity: 0, y: 50, scale: 0.9 }}
         animate={{ opacity: 1, y: 0, scale: 1 }}
         exit={{ opacity: 0, y: 50, scale: 0.9 }}
@@ -314,13 +314,13 @@ export const ChatWindow = ({ isOpen, onClose }: ChatWindowProps) => {
                 style={{
                   wordBreak: 'break-word',
                   overflowWrap: 'break-word',
-                  hyphens: 'auto'
+                  wordWrap: 'break-word'
                 }}
               >
                 {msg.html ? (
                   <div dangerouslySetInnerHTML={{ __html: msg.text }} />
                 ) : (
-                  <div className="prose prose-sm dark:prose-invert max-w-none space-y-1">
+                  <div className="prose prose-sm dark:prose-invert max-w-none">
                     {msg.text.split('\n').map((line, i) => {
                       // Handle numbered lists (1. Item)
                       if (/^\d+\.\s/.test(line)) {

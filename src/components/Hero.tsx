@@ -62,6 +62,12 @@ export function Hero() {
                 src="/images/Kushagra2.jpg" 
                 alt="Kushagra Singh" 
                 className="w-full h-full rounded-full object-cover"
+                style={{
+                  imageRendering: 'crisp-edges',
+                  transform: 'translateZ(0)',
+                  backfaceVisibility: 'hidden',
+                  WebkitTransform: 'translateZ(0)'
+                }}
                 onError={(e) => {
                   // Fallback to initials if image fails to load
                   const target = e.target as HTMLImageElement;
