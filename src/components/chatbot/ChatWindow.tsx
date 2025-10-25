@@ -218,7 +218,7 @@ export const ChatWindow = ({ isOpen, onClose }: ChatWindowProps) => {
   return (
     <AnimatePresence>
       <motion.div
-        className="fixed bottom-20 right-4 w-[470px] max-w-[calc(100vw-2rem)] h-[700px] max-h-[calc(100vh-120px)] bg-background rounded-2xl shadow-2xl z-40 flex flex-col overflow-hidden border border-border"
+        className="fixed bottom-4 right-4 w-[470px] max-w-[calc(100vw-2rem)] h-[85vh] max-h-[calc(100vh-2rem)] bg-background rounded-2xl shadow-2xl z-[100] flex flex-col overflow-hidden border border-border"
         initial={{ opacity: 0, y: 50, scale: 0.9 }}
         animate={{ opacity: 1, y: 0, scale: 1 }}
         exit={{ opacity: 0, y: 50, scale: 0.9 }}
@@ -351,7 +351,7 @@ export const ChatWindow = ({ isOpen, onClose }: ChatWindowProps) => {
         </div>
 
         {/* Input */}
-        <div className="p-4 border-t border-border">
+        <div className="p-4 border-t border-border bg-background">
           <form
             onSubmit={(e) => {
               e.preventDefault();
