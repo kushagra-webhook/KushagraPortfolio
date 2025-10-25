@@ -1,9 +1,6 @@
 import { motion } from "framer-motion";
 import { ExternalLink } from "lucide-react";
-import post1 from "@/assets/linkedin-post-1.jpg";
-import post2 from "@/assets/linkedin-post-2.jpg";
-import post3 from "@/assets/linkedin-post-3.jpg";
-import post4 from "@/assets/linkedin-post-4.jpg";
+
 
 interface LinkedInPost {
   id: string;
@@ -19,28 +16,28 @@ const linkedInPosts: LinkedInPost[] = [
     url: "https://www.linkedin.com/posts/kushagra-anit-singh_hackathon-bosch-borosa2025-activity-7318136852983508992-7Knc?utm_source=social_share_send&utm_medium=member_desktop_web&rcm=ACoAAD0zmMoBm5GxIxS_6_OgwkSOgfLZTmlXMHg",
     title: "Bosch BOROSA 2025 Hackathon Finalist",
     description: "Autonomous Traffic Management System with YOLOv8 and ESP32 - Real-time AI-driven traffic solutions for smart cities",
-    thumbnail: post1,
+    thumbnail: "/linkedin4.jpg",
   },
   {
     id: "2",
     url: "https://www.linkedin.com/posts/kushagra-anit-singh_machinelearning-nlp-conversationalai-activity-7346197761161101312-hXC5?utm_source=social_share_send&utm_medium=member_desktop_web&rcm=ACoAAD0zmMoBm5GxIxS_6_OgwkSOgfLZTmlXMHg",
     title: "RAG Chatbot with LLaMA-3 70B",
     description: "Research Paper Published at IEEE ICoICC 2025 - Hybrid Retrieval-Augmented Generation achieving 0.92 BERTScore accuracy",
-    thumbnail: post2,
+    thumbnail: "/linkedin3.jpg",
   },
   {
     id: "3",
     url: "https://www.linkedin.com/posts/kushagra-anit-singh_adobehackathon-adobe-hackathon-activity-7372552805162668032-CWqP?utm_source=social_share_send&utm_medium=member_desktop_web&rcm=ACoAAD0zmMoBm5GxIxS_6_OgwkSOgfLZTmlXMHg",
     title: "Adobe Hackathon 2025 Finale",
     description: "AI-Powered PDF Analysis Platform with Google Gemini, Azure Speech Services, and semantic search capabilities",
-    thumbnail: post3,
+    thumbnail: "/linkedin2.jpg",
   },
   {
     id: "4",
     url: "https://www.linkedin.com/posts/kushagra-anit-singh_mufg-mitsubishi-hackathonwinner-activity-7376684951288754176-zPee?utm_source=social_share_send&utm_medium=member_desktop_web&rcm=ACoAAD0zmMoBm5GxIxS_6_OgwkSOgfLZTmlXMHg",
     title: "Mitsubishi Hackathon Winner",
     description: "AI-Powered Superannuation Advisor Dashboard with ML-driven retirement projections and voice-enabled financial guidance",
-    thumbnail: post4,
+    thumbnail: "/linkedin1.jpg",
   },
 ];
 
@@ -64,7 +61,7 @@ export const Gallery = () => {
               backgroundClip: 'text',
             }}
           >
-            LinkedIn Gallery
+            Gallery
           </h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
             Check out my latest posts and updates from LinkedIn
@@ -72,7 +69,7 @@ export const Gallery = () => {
         </motion.div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          {linkedInPosts.map((post, index) => (
+          {[...linkedInPosts].sort((a, b) => parseInt(b.id) - parseInt(a.id)).map((post, index) => (
             <motion.a
               key={post.id}
               href={post.url}
@@ -82,29 +79,28 @@ export const Gallery = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: index * 0.1, duration: 0.5 }}
-              whileHover={{ scale: 1.02, y: -5 }}
-              className="group relative overflow-hidden rounded-2xl gradient-card border border-border shadow-elegant hover:shadow-glow transition-all duration-300"
+              whileHover={{ y: -4 }}
+              className="group relative overflow-hidden rounded-lg border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900 shadow-sm hover:shadow-md transition-all duration-300 max-w-lg mx-auto w-full"
               aria-label={`View LinkedIn post: ${post.title}`}
             >
-              <div className="absolute top-4 right-4 z-10 w-10 h-10 rounded-full bg-background/80 backdrop-blur-sm flex items-center justify-center group-hover:bg-primary/20 transition-colors">
-                <ExternalLink className="w-5 h-5 text-primary" />
+              <div className="absolute top-3 right-3 z-10 w-9 h-9 rounded-full bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm flex items-center justify-center group-hover:bg-blue-50 dark:group-hover:bg-blue-900/30 transition-colors shadow-sm">
+                <ExternalLink className="w-4 h-4 text-blue-600 dark:text-blue-400" />
               </div>
 
-              <div className="relative aspect-[4/3] w-full overflow-hidden bg-muted">
+              <div className="relative w-full overflow-hidden bg-gray-100 dark:bg-gray-800">
                 <img
                   src={post.thumbnail}
-                  alt={`LinkedIn post screenshot: ${post.title}`}
-                  className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+                  alt={`LinkedIn post: ${post.title}`}
+                  className="w-full h-auto object-contain max-h-[500px]"
                   loading="lazy"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-background/90 via-background/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
               </div>
 
-              <div className="p-6 space-y-3">
+              <div className="p-4">
                 <div className="flex items-start gap-3">
-                  <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-primary to-accent flex items-center justify-center flex-shrink-0">
+                  <div className="w-10 h-10 rounded-full bg-blue-600 flex-shrink-0 flex items-center justify-center text-white">
                     <svg
-                      className="w-6 h-6 text-white"
+                      className="w-5 h-5"
                       fill="currentColor"
                       viewBox="0 0 24 24"
                       aria-hidden="true"
@@ -114,17 +110,17 @@ export const Gallery = () => {
                   </div>
 
                   <div className="flex-1 min-w-0">
-                    <h3 className="text-lg font-heading font-semibold mb-1 text-foreground group-hover:text-primary transition-colors">
+                    <h3 className="text-base font-medium text-gray-900 dark:text-gray-100 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors line-clamp-2">
                       {post.title}
                     </h3>
-                    <p className="text-sm text-muted-foreground line-clamp-2">
+                    <p className="text-sm text-gray-600 dark:text-gray-400 mt-1 line-clamp-2">
                       {post.description}
                     </p>
                   </div>
                 </div>
 
-                <div className="flex items-center gap-2 text-xs text-muted-foreground pt-2 border-t border-border/50">
-                  <div className="w-2 h-2 rounded-full bg-primary animate-pulse" />
+                <div className="flex items-center gap-2 text-xs text-gray-500 dark:text-gray-400 mt-3 pt-3 border-t border-gray-100 dark:border-gray-800">
+                  <div className="w-2 h-2 rounded-full bg-blue-500" />
                   <span>View on LinkedIn</span>
                 </div>
               </div>

@@ -237,16 +237,28 @@ export const ChatWindow = ({ isOpen, onClose }: ChatWindowProps) => {
               </p>
             </div>
           </div>
-          <button
-            onClick={onClose}
-            className="text-white hover:text-purple-200 transition-colors"
-            title="Close chat"
-            aria-label="Close chat"
-          >
-            <svg className="w-6 h-6" fill="none" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" viewBox="0 0 24 24" stroke="currentColor">
-              <path d="M6 18L18 6M6 6l12 12" />
-            </svg>
-          </button>
+          <div className="flex items-center space-x-2">
+            <button
+              onClick={() => setMessages([])}
+              className="text-white hover:text-purple-200 transition-colors p-1"
+              title="Refresh chat"
+              aria-label="Refresh chat"
+            >
+              <svg className="w-5 h-5" fill="none" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" viewBox="0 0 24 24" stroke="currentColor">
+                <path d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+              </svg>
+            </button>
+            <button
+              onClick={onClose}
+              className="text-white hover:text-purple-200 transition-colors p-1"
+              title="Close chat"
+              aria-label="Close chat"
+            >
+              <svg className="w-6 h-6" fill="none" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" viewBox="0 0 24 24" stroke="currentColor">
+                <path d="M6 18L18 6M6 6l12 12" />
+              </svg>
+            </button>
+          </div>
         </div>
 
         {/* Messages */}

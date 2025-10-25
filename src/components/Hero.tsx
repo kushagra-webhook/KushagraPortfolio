@@ -58,9 +58,19 @@ export function Hero() {
             className="relative inline-block"
           >
             <div className="w-32 h-32 md:w-40 md:h-40 rounded-full bg-gradient-to-br from-primary to-accent p-1 shadow-glow animate-float">
-              <div className="w-full h-full rounded-full bg-card flex items-center justify-center text-6xl font-heading font-bold text-primary">
-                KS
-              </div>
+              <img 
+                src="/images/Kushagra2.jpg" 
+                alt="Kushagra Singh" 
+                className="w-full h-full rounded-full object-cover"
+                onError={(e) => {
+                  // Fallback to initials if image fails to load
+                  const target = e.target as HTMLImageElement;
+                  target.src = '';
+                  target.alt = 'KS';
+                  target.className = 'w-full h-full rounded-full bg-card flex items-center justify-center text-6xl font-heading font-bold text-primary';
+                  target.textContent = 'KS';
+                }}
+              />
             </div>
           </motion.div>
 

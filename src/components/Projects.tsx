@@ -90,8 +90,17 @@ export function Projects() {
               viewport={{ once: true }}
               transition={{ delay: index * 0.1, duration: 0.5 }}
             >
-              <Card className="h-full p-6 hover:shadow-xl transition-all duration-300 gradient-card group">
-                <div className="space-y-4">
+              <Card className="h-full overflow-hidden hover:shadow-xl transition-all duration-300 gradient-card group">
+                {project.image && (
+                  <div className="h-48 overflow-hidden">
+                    <img 
+                      src={project.image} 
+                      alt={project.title}
+                      className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                    />
+                  </div>
+                )}
+                <div className="p-6 space-y-4">
                   <div>
                     <div className="flex items-start justify-between gap-2 mb-2">
                       <h3 className="text-xl font-heading font-semibold text-foreground group-hover:text-primary transition-colors">

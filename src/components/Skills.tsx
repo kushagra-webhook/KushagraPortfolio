@@ -47,6 +47,7 @@ export function Skills() {
                       key={skill.name} 
                       className="group flex items-center gap-2 bg-secondary/50 hover:bg-primary/10 px-3 py-2 rounded-lg transition-all cursor-default border border-border/50 hover:border-primary/30"
                     >
+                      {/* Logo temporarily disabled
                       <img 
                         src={skill.logo} 
                         alt={`${skill.name} logo`}
@@ -55,6 +56,7 @@ export function Skills() {
                           e.currentTarget.style.display = 'none';
                         }}
                       />
+                      */}
                       <span className="text-sm font-medium text-foreground group-hover:text-primary transition-colors">
                         {skill.name}
                       </span>

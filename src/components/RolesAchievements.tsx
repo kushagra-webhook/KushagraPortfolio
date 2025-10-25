@@ -6,14 +6,17 @@ const roles = [
   {
     role: 'IRIS [Student Club, MIT-WPU] – Technical Head',
     date: 'Aug 2024 – Present',
+    icon: '/images/iris.png'
   },
   {
     role: 'IIMT University [Remote] – ML Research Associate',
     date: 'Jan 2025 – Mar 2025',
+    icon: '/images/iimt.jpeg'
   },
   {
     role: 'Infosys Springboard [Remote] – ML Intern',
     date: 'Oct 2024 – Dec 2024',
+    icon: '/images/info.png'
   }
 ];
 
@@ -22,31 +25,31 @@ const achievements = [
     title: 'Mitsubishi UFJ Financial Group (MUFG) Hackathon 2025',
     status: 'Winner',
     description: 'Led development of an AI-powered financial assistant for personalized retirement planning using XGBoost, KMeans, and Google Gemini. Enabled voice-first interaction via Azure Speech Services and real-time insights with NewsAPI + Gemini. Deployed with Docker on AWS App Runner and frontend on Vercel.',
-    icon: '🏆'
+    icon: '/images/mufg.png'
   },
   {
     title: 'Adobe India Hackathon 2025',
     status: 'Top 100 out of 2.6L+ participants',
     description: 'Built a containerized AI pipeline for PDF understanding, including multilingual outline extraction (PyMuPDF, K-Means), persona-driven content ranking (Ollama), and a semantic insight platform with PDF.js integration and Azure TTS-based multi-voice podcasting.',
-    icon: '🎯'
+    icon: '/images/adobe.png'
   },
   {
     title: 'Bosch BOROSA Hackathon 2025',
     status: 'Top 18 Finalist',
     description: 'Built an intelligent traffic safety system using YOLOv8 for real-time signal & crosswalk detection (95–98% accuracy). Integrated ESP32S3 and MQTT for edge automation and GenAI-based decision logic.',
-    icon: '🚗'
+    icon: '/images/bosch.jpg'
   },
   {
     title: 'Smart India Hackathon (SIH) 2024',
     status: 'Top 25 Finalist',
     description: 'Developed PlantWise, an LLM-powered Ayurvedic health companion for disease prediction and natural remedies.',
-    icon: '🌿'
+    icon: '/images/sih.webp'
   },
   {
     title: 'HackMITWPU\'24 Ideathon',
     status: 'Finalist',
     description: 'Proposed DermDetect, an AI-powered tool for preliminary dermatological diagnosis using image processing for remote consultations and personalized skincare solutions.',
-    icon: '🩺'
+    icon: '/images/hackmitwpu.jpeg'
   }
 ];
 
@@ -82,7 +85,7 @@ export function RolesAchievements() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            className="max-w-4xl mx-auto"
+            className="max-w-6xl mx-auto"
           >
             <Card className="p-6 gradient-card">
               <div className="flex items-center gap-3 mb-6">
@@ -101,8 +104,29 @@ export function RolesAchievements() {
                     transition={{ delay: index * 0.1 }}
                     className="p-4 bg-secondary/50 rounded-lg border border-border hover:border-primary transition-colors"
                   >
-                    <p className="text-foreground font-medium mb-1">{role.role}</p>
-                    <p className="text-sm text-muted-foreground font-mono">{role.date}</p>
+                    <div className="flex items-start gap-3">
+                      <div className="w-12 h-12 flex-shrink-0 rounded-full overflow-hidden border-2 border-border/20 shadow-sm bg-white p-0 flex items-center justify-center">
+                        <div className="w-11 h-11 rounded-full overflow-hidden">
+                          <img 
+                            src={role.icon} 
+                            alt="" 
+                            className="w-full h-full object-cover"
+                            onError={(e) => {
+                              const target = e.target as HTMLImageElement;
+                              target.style.display = 'none';
+                              const fallback = document.createElement('span');
+                              fallback.className = 'w-full h-full flex items-center justify-center text-2xl bg-accent/10';
+                              fallback.textContent = '💼';
+                              target.parentNode?.insertBefore(fallback, target);
+                            }}
+                          />
+                        </div>
+                      </div>
+                      <div>
+                        <p className="text-foreground font-medium mb-1">{role.role}</p>
+                        <p className="text-sm text-muted-foreground font-mono">{role.date}</p>
+                      </div>
+                    </div>
                   </motion.div>
                 ))}
               </div>
@@ -140,7 +164,7 @@ export function RolesAchievements() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            className="max-w-4xl mx-auto"
+            className="max-w-6xl mx-auto"
           >
             <Card className="p-6 gradient-card">
               <div className="flex items-center gap-3 mb-6">
@@ -160,7 +184,23 @@ export function RolesAchievements() {
                     className="h-full p-4 bg-secondary/50 rounded-lg border border-border hover:border-accent transition-colors"
                   >
                     <div className="flex items-start gap-3 h-full">
-                      <span className="text-2xl flex-shrink-0">{achievement.icon}</span>
+                      <div className="w-16 h-16 flex-shrink-0 rounded-lg overflow-hidden border border-border/20 shadow-sm bg-white p-0">
+                        <div className="w-full h-full flex items-center justify-center">
+                          <img 
+                            src={achievement.icon} 
+                            alt="" 
+                            className={`w-full h-full ${achievement.title.includes('Adobe') ? 'object-contain p-2' : 'object-cover'}`}
+                            onError={(e) => {
+                              const target = e.target as HTMLImageElement;
+                              target.style.display = 'none';
+                              const fallback = document.createElement('span');
+                              fallback.className = 'w-full h-full flex items-center justify-center text-4xl';
+                              fallback.textContent = '🏆';
+                              target.parentNode?.insertBefore(fallback, target);
+                            }}
+                          />
+                        </div>
+                      </div>
                       <div className="flex-1">
                         <div className="flex flex-col sm:flex-row sm:flex-wrap sm:items-baseline gap-1 sm:gap-2">
                           <span className="font-semibold text-foreground">{achievement.title}</span>

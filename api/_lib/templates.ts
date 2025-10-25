@@ -27,7 +27,8 @@ export function adminTemplate({
         )
         .join('')
     : '<tr><td style="padding:8px 0;color:#64748b">No attachments uploaded.</td></tr>';
-
+  
+    // {/* <p style="margin:8px 0 0 0;color:#64748b;font-size:14px">Aspiring AI/ML Engineer & Software Developer</p> */}
   return `
   <div style="font-family:Inter,'Segoe UI',Arial,sans-serif;background:linear-gradient(135deg, #fefefe 0%, #e0f2fe 30%, #e0f7fa 70%, #fefefe 100%);color:#1e293b;padding:32px;min-height:100vh">
     <div style="max-width:640px;margin:0 auto;background:#ffffff;border:1px solid #e2e8f0;border-radius:20px;overflow:hidden;box-shadow:0 10px 25px rgba(0,0,0,0.08)">
@@ -35,7 +36,7 @@ export function adminTemplate({
       <div style="padding:32px">
         <div style="text-align:center;margin-bottom:24px">
           <h1 style="margin:0;font-size:28px;font-weight:700;background:linear-gradient(135deg, #4f46e5, #06b6d4);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text">Kushagra Singh</h1>
-          <p style="margin:8px 0 0 0;color:#64748b;font-size:14px">Aspiring AI/ML Engineer & Software Developer</p>
+          
         </div>
         
         <h2 style="margin:0 0 16px 0;color:#1e293b;font-size:24px;font-weight:600">New Contact Submission</h2>
@@ -87,7 +88,9 @@ export function userTemplate({
   name: string;
   subject?: string;
   message: string;
-}) {
+}) 
+//  {/* <p style="margin:8px 0 0 0;color:#64748b;font-size:14px">Aspiring AI/ML Engineer & Software Developer</p> */}
+{
   return `
   <div style="font-family:Inter,'Segoe UI',Arial,sans-serif;background:linear-gradient(135deg, #fefefe 0%, #e0f2fe 30%, #e0f7fa 70%, #fefefe 100%);color:#1e293b;padding:32px;min-height:100vh">
     <div style="max-width:640px;margin:0 auto;background:#ffffff;border:1px solid #e2e8f0;border-radius:20px;overflow:hidden;box-shadow:0 10px 25px rgba(0,0,0,0.08)">
@@ -95,7 +98,7 @@ export function userTemplate({
       <div style="padding:32px">
         <div style="text-align:center;margin-bottom:24px">
           <h1 style="margin:0;font-size:28px;font-weight:700;background:linear-gradient(135deg, #4f46e5, #06b6d4);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text">Kushagra Singh</h1>
-          <p style="margin:8px 0 0 0;color:#64748b;font-size:14px">Aspiring AI/ML Engineer & Software Developer</p>
+         
         </div>
         
         <h2 style="margin:0 0 16px 0;color:#1e293b;font-size:24px;font-weight:600">Thanks for reaching out!</h2>

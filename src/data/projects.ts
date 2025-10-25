@@ -11,6 +11,7 @@ export const projects = [
       'Selected for the Adobe Hackathon Finale for innovation in AI-driven research and document exploration.'
     ],
     link: 'https://github.com/kushagra-a-singh/Adobe-Hackathon-2025_Team-Ctrl-Alt-Complete_Finale',
+    image: '/images/adobeproj.png',
   },
   {
     title: 'Mitsubishi Hackathon Winning Project: AI-Powered Superannuation Advisor Dashboard',
@@ -24,6 +25,20 @@ export const projects = [
       'Deployed on AWS, achieving responsive, accessible UI optimized for older users with large fonts, high contrast, and simple navigation.'
     ],
     link: 'https://github.com/kushagra-a-singh/Mitsubishi-Hackathon-Finals',
+    image: '/images/mufgproj.png',
+  },
+  {
+    title: 'Bosch Hackathon Finalist Project: Autonomous Traffic Management System',
+    category: 'Embedded',
+    domain: 'embedded',
+    tags: ['YOLOv8', 'ESP32', 'MQTT', 'Python', 'Roboflow', 'Motor Drivers', 'Real-time Detection', 'Autonomous Control'],
+    points: [
+      'Developed a traffic management system integrating YOLOv8 for traffic and crosswalk detection with ESP32 hardware for real-time signal control.',
+      'Implemented MQTT for smooth communication between detection and traffic pods, managing multiple traffic states (GO, SLOW, HALT) with buzzer alerts, demonstrating real-time AI-driven embedded solutions for smart cities.',
+      'Used Roboflow to boost detection accuracy and deployed optimized ESP32 firmware for autonomous hardware actuation.',
+    ],
+    link: 'https://github.com/kushagra-a-singh/BOSCH-BOROSA-Team-Tarzan',
+    image: '/images/boschproj.jpeg',
   },
   {
     title: 'Government Research Project: STIV-based Velocity Estimation for CWPRS(GOI)',
@@ -37,6 +52,7 @@ export const projects = [
       'Utilizing xarray and Dask for scalable, efficient data processing and seamless integration with existing hydrological data pipelines.'
     ],
     link: 'https://github.com/kushagra-a-singh/STIV-based-Velocity-Estimation',
+    image: '/images/cwprs.jpg',
   },
   {
     title: 'IRIS Club RAG Chatbot - Research Paper Published at IEEE ICoICC 2025',
@@ -50,19 +66,8 @@ export const projects = [
       'Successfully deployed the hybrid chatbot on the official IRIS MIT-WPU website, handling real user queries with high accuracy and performance.'
     ],
     link: 'https://github.com/kushagra-a-singh/I.R.I.S-Prod-Website',
+    image: '/images/rag-chatbot.png',
     // liveDemo: 'https://www.iris-club.in/',
-  },
-  {
-    title: 'Bosch Hackathon Finalist Project: Autonomous Traffic Management System',
-    category: 'Embedded',
-    domain: 'embedded',
-    tags: ['YOLOv8', 'ESP32', 'MQTT', 'Python', 'Roboflow', 'Motor Drivers', 'Real-time Detection', 'Autonomous Control'],
-    points: [
-      'Developed a traffic management system integrating YOLOv8 for traffic and crosswalk detection with ESP32 hardware for real-time signal control.',
-      'Implemented MQTT for smooth communication between detection and traffic pods, managing multiple traffic states (GO, SLOW, HALT) with buzzer alerts, demonstrating real-time AI-driven embedded solutions for smart cities.',
-      'Used Roboflow to boost detection accuracy and deployed optimized ESP32 firmware for autonomous hardware actuation.',
-    ],
-    link: 'https://github.com/kushagra-a-singh/BOSCH-BOROSA-Team-Tarzan',
   },
   {
     title: 'DocsVerse - Document Research Chatbot',
@@ -75,6 +80,7 @@ export const projects = [
       'Created React.js frontend with Material UI and drag-and-drop functionality. Implemented document processing pipeline with OCR support, chunking, and theme analysis.'
     ],
     link: 'https://github.com/kushagra-a-singh/DocsVerse',
+    image: '/images/docsverse.jpg'
   },
   {
     title: 'LangGraph Researcher',
@@ -88,6 +94,7 @@ export const projects = [
       'Created extensible system allowing easy addition of new agents.'
     ],
     link: 'https://github.com/kushagra-a-singh/LangGraph-Researcher',
+    image: '/images/langgraph-researcher.jpg'
   },
   {
     title: 'SynapTrack - Parkinson\'s Detection',
@@ -101,6 +108,7 @@ export const projects = [
       'Created interactive Streamlit dashboard for real-time visualization.'
     ],
     link: 'https://github.com/kushagra-a-singh/SynapTrack',
+    image: '/images/synaptrack.jpg'
   },
   {
     title: 'Data Orchestrate - Distributed File Sync',
@@ -113,6 +121,7 @@ export const projects = [
       'Automated infrastructure provisioning with health checks. Achieved 99.9% uptime in Minikube.'
     ],
     link: 'https://github.com/kushagra-a-singh/Data-Orchestrate',
+    image: '/images/distributed-sync.png'
   },
   {
     title: 'Airfield Wildlife Risk Classification',
@@ -126,6 +135,7 @@ export const projects = [
       'Created interactive Flask dashboard with live video streaming.'
     ],
     link: 'https://github.com/kushagra-a-singh/Airfield-Wildlife-Risk-Classification',
+    image: '/images/wildlife-risk.jpg'
   },
   {
     title: 'ForVis - Formula 1 Analytics',
@@ -138,6 +148,7 @@ export const projects = [
       'Implemented ML models for pit stop prediction (86% accuracy). Added multi-driver comparison and strategy dashboards.'
     ],
     link: 'https://github.com/kushagra-a-singh/ForVis',
+    image: '/images/KushagraProj1.png'
   },
   {
     title: 'Cardiovascular Diseases Prediction',
@@ -151,6 +162,7 @@ export const projects = [
       'Implemented comprehensive model evaluation with ROC curves.'
     ],
     link: 'https://github.com/kushagra-a-singh/Cardiovascular-Diseases-Prediction',
+    image: '/images/cardiovascular-prediction.png'
   },
   {
     title: 'Tarzan - Autonomous Vehicle Module',
@@ -164,6 +176,7 @@ export const projects = [
       'App-based image input for decision making like steering and braking.'
     ],
     link: 'https://github.com/kushagra-a-singh/Tarzan-I.R.I.S.',
+    image: '/images/simulation.jpg'
   },
   {
     title: 'MedTech Diagnostic LLM Pipeline',
@@ -177,6 +190,7 @@ export const projects = [
       'Enabled RAG-enhanced clinical summaries supporting DICOM/NIfTI inputs and an expert feedback loop for iterative refinement.'
     ],
     link: 'https://github.com/kushagra-a-singh/MedTech-Diagnostic-LLM-Pipeline',
+    image: '/images/medtech.bmp'
   },
   {
     title: 'IRIS Club Website',
@@ -189,6 +203,7 @@ export const projects = [
       'Features event registrations, dynamic blogging, and voting system. Utilized Razorpay SDK and continuous deployment on Vercel.'
     ],
     link: 'https://github.com/kushagra-a-singh/I.R.I.S-Prod-Website',
+    image: '/images/website_img.png'
   },
   {
     title: 'PlantWise - Ayurvedic AI Companion',
@@ -202,6 +217,7 @@ export const projects = [
       'Achieved 89% user satisfaction across 500+ curated mappings.'
     ],
     link: 'https://github.com/kushagra-a-singh/PlantWise-SIH',
+    image: '/images/plantwise1.jpg'
   },
   {
     title: 'Driver Safety Monitoring System',
@@ -215,5 +231,6 @@ export const projects = [
       'Enabled timely feedback for enhanced driver safety.'
     ],
     link: 'https://github.com/kushagra-a-singh/Embedded-Arduino-System-for-Car-Road-Safety',
+    image: '/images/KushagraProj2-1.jpg'
   }
 ];

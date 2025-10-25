@@ -9,7 +9,7 @@ const experiences = [
     role: 'Technical Head',
     location: 'Pune',
     date: 'Aug 2024 – Present',
-    logo: '🎯',
+    logo: '/images/iris.png',
     description: [
       'Spearheaded the development of the official I.R.I.S. club website, taking the lead in designing, coding, and deploying it for live hackathon event registrations for 200+ people.',
       'Currently leading and managing the tech team to oversee website updates, changes, & new feature implementations.',
@@ -22,7 +22,7 @@ const experiences = [
     role: 'Machine Learning Research Associate',
     location: 'Remote',
     date: 'Jan 2025 – Mar 2025',
-    logo: '🔬',
+    logo: '/images/iimt.jpeg',
     description: [
       'Led an AI-driven machine learning research project for Cardiovascular Disease risk prediction, contributing to a PhD study in healthcare analytics.',
       'Developed a predictive pipeline utilizing ensemble ML models for multi-disease risk assessment.',
@@ -35,7 +35,7 @@ const experiences = [
     role: 'ML Project Intern',
     location: 'Remote',
     date: 'Oct 2024 – Dec 2024',
-    logo: '💼',
+    logo: '/images/info.png',
     description: [
       'Designed and implemented a handwritten digit recognition application using neural networks (MLP, CNN, LeNet5) for MNIST dataset classification.',
       'Developed custom PyTorch models with dropout, activation functions, and convolutional layers for efficient feature extraction.',
@@ -82,8 +82,22 @@ export function Experience() {
               <Card className="p-6 hover:shadow-lg transition-all duration-300 gradient-card border-l-4 border-l-primary">
                 <div className="flex flex-col md:flex-row gap-6">
                   <div className="flex-shrink-0">
-                    <div className="w-16 h-16 bg-primary/10 rounded-lg flex items-center justify-center text-3xl">
-                      {exp.logo}
+                    <div className={`w-16 h-16 rounded-full overflow-hidden border-2 border-border/20 shadow-sm bg-white p-0 flex items-center justify-center ${exp.company.includes('IRIS') ? 'bg-black' : ''}`}>
+                      <div className={`${exp.company.includes('IRIS') ? 'w-16 h-16 scale-110' : 'w-15 h-15'} rounded-full overflow-hidden`}>
+                        <img 
+                          src={exp.logo} 
+                          alt="" 
+                          className={`w-full h-full ${exp.company.includes('IRIS') ? 'scale-110' : 'object-cover'}`}
+                          onError={(e) => {
+                            const target = e.target as HTMLImageElement;
+                            target.style.display = 'none';
+                            const fallback = document.createElement('span');
+                            fallback.className = 'w-full h-full flex items-center justify-center text-2xl bg-accent/10';
+                            fallback.textContent = '💼';
+                            target.parentNode?.insertBefore(fallback, target);
+                          }}
+                        />
+                      </div>
                     </div>
                   </div>
                   
