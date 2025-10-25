@@ -50,6 +50,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
 
     const { fields, files } = await parseForm(req);
 
+    const title = String(fields.title || '').trim();
     const name = String(fields.name || '').trim();
     const email = String(fields.email || '').trim();
     const subject = String(fields.subject || '').trim();
@@ -94,7 +95,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
 
       const { data: signed, error: signError } = await supabase.storage
         .from('contact-uploads')
-        .createSignedUrl(objectName, 60 * 60 * 24 * 30); // 30 days
+        .createSignedUrl(objectName, 60 * 60 * 24 * 180); // 180 days
 
       if (signError || !signed?.signedUrl) {
         console.error('Signed URL error:', signError?.message);
@@ -107,6 +108,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     const { error: insertError } = await supabase
       .from('contact_submissions')
       .insert({
+        title,
         name,
         email,
         subject: subject || null,
@@ -120,6 +122,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     }
 
     await sendAdminEmail({
+      title,
       name,
       email,
       subject,
@@ -128,6 +131,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     });
 
     await sendUserEmail({
+      title,
       name,
       email,
       subject,

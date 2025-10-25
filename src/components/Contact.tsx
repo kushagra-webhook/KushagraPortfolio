@@ -7,18 +7,31 @@ import { Textarea } from '@/components/ui/textarea';
 
 export const Contact = () => {
   const [formData, setFormData] = useState({
+    title: '',
     name: '',
     email: '',
     subject: '',
     message: '',
   });
+
+  const titleOptions = [
+    'Mr.',
+    'Mrs.',
+    'Ms.',
+    'Miss',
+    'Dr.',
+    'Prof.',
+    'Hon.',
+    'Sir',
+    'Ma\'am'
+  ];
   const [files, setFiles] = useState<File[]>([]);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [showNotification, setShowNotification] = useState(false);
   const [notificationMessage, setNotificationMessage] = useState('');
   const [notificationType, setNotificationType] = useState<'success' | 'error'>('success');
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
@@ -38,7 +51,7 @@ export const Contact = () => {
     setIsSubmitting(true);
 
     // Validate form
-    if (!formData.name || !formData.email || !formData.message) {
+    if (!formData.title || !formData.name || !formData.email || !formData.message) {
       setNotificationType('error');
       setNotificationMessage('Please fill in all required fields.');
       setShowNotification(true);
@@ -58,6 +71,7 @@ export const Contact = () => {
 
     try {
       const body = new FormData();
+      body.append('title', formData.title);
       body.append('name', formData.name);
       body.append('email', formData.email);
       body.append('subject', formData.subject);
@@ -88,7 +102,7 @@ export const Contact = () => {
       setShowNotification(true);
 
       // Reset form
-      setFormData({ name: '', email: '', subject: '', message: '' });
+      setFormData({ title: '', name: '', email: '', subject: '', message: '' });
       setFiles([]);
     } catch (error: any) {
       setNotificationType('error');
@@ -101,7 +115,7 @@ export const Contact = () => {
 
   return (
     <section id="contact" className="py-20 px-4 sm:px-6">
-      <div className="container mx-auto max-w-4xl">
+      <div className="container mx-auto max-w-5xl">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -125,9 +139,42 @@ export const Contact = () => {
 
           <Card className="p-8 bg-card/50 backdrop-blur-sm border-border">
             <form onSubmit={handleSubmit} className="space-y-6">
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div>
-                  <label htmlFor="name" className="block text-sm font-medium mb-2">
+              <div className="grid grid-cols-1 md:grid-cols-12 gap-4">
+                <div className="space-y-2 md:col-span-2">
+                  <label htmlFor="title" className="block text-sm font-medium">
+                    Title *
+                  </label>
+                  <div className="relative">
+                    <select
+                      id="title"
+                      name="title"
+                      value={formData.title}
+                      onChange={handleInputChange}
+                      required
+                      className="w-full h-10 pl-3 pr-8 text-sm transition-all duration-200 rounded-md appearance-none bg-background/30 backdrop-blur-sm border border-white/20 focus:border-primary/50 focus:ring-2 focus:ring-primary/20 focus:outline-none cursor-pointer text-foreground"
+                      style={{
+                        background: 'rgba(255, 255, 255, 0.1)',
+                        backdropFilter: 'blur(8px)',
+                        WebkitBackdropFilter: 'blur(8px)',
+                        boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)'
+                      }}
+                    >
+                      <option value="" className="bg-background/90 text-foreground" disabled>Select title</option>
+                      {titleOptions.map((title) => (
+                        <option key={title} value={title} className="bg-background/90 text-foreground">
+                          {title}
+                        </option>
+                      ))}
+                    </select>
+                    <div className="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none">
+                      <svg className="w-4 h-4 text-foreground/70" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                      </svg>
+                    </div>
+                  </div>
+                </div>
+                <div className="space-y-2 md:col-span-5">
+                  <label htmlFor="name" className="block text-sm font-medium">
                     Name *
                   </label>
                   <Input
@@ -137,11 +184,11 @@ export const Contact = () => {
                     onChange={handleInputChange}
                     placeholder="Your name"
                     required
-                    className="bg-background"
+                    className="w-full bg-background"
                   />
                 </div>
-                <div>
-                  <label htmlFor="email" className="block text-sm font-medium mb-2">
+                <div className="space-y-2 md:col-span-5">
+                  <label htmlFor="email" className="block text-sm font-medium">
                     Email *
                   </label>
                   <Input
@@ -152,7 +199,7 @@ export const Contact = () => {
                     onChange={handleInputChange}
                     placeholder="your.email@example.com"
                     required
-                    className="bg-background"
+                    className="w-full bg-background"
                   />
                 </div>
               </div>

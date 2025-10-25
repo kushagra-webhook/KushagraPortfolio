@@ -1,12 +1,14 @@
 type FileInfo = { filename: string; publicUrl: string };
 
 export function adminTemplate({
+  title,
   name,
   email,
   subject,
   message,
   files,
 }: {
+  title: string;
   name: string;
   email: string;
   subject?: string;
@@ -44,6 +46,11 @@ export function adminTemplate({
         
         <div style="background:linear-gradient(135deg, #f8fafc, #f1f5f9);border:1px solid #e2e8f0;border-radius:16px;padding:24px;margin-bottom:24px">
           <table style="width:100%">
+            ${title ? `
+            <tr>
+              <td style="padding:12px 0;color:#4f46e5;font-weight:500;font-size:14px">Title</td>
+              <td style="padding:12px 0;text-align:right;color:#1e293b;font-weight:500">${escapeHtml(title)}</td>
+            </tr>` : ''}
             <tr>
               <td style="padding:12px 0;color:#4f46e5;font-weight:500;font-size:14px">Name</td>
               <td style="padding:12px 0;text-align:right;color:#1e293b;font-weight:500">${escapeHtml(name)}</td>
@@ -81,10 +88,12 @@ export function adminTemplate({
 }
 
 export function userTemplate({
+  title,
   name,
   subject,
   message,
 }: {
+  title: string;
   name: string;
   subject?: string;
   message: string;
@@ -102,7 +111,7 @@ export function userTemplate({
         </div>
         
         <h2 style="margin:0 0 16px 0;color:#1e293b;font-size:24px;font-weight:600">Thanks for reaching out!</h2>
-        <p style="margin:0 0 8px 0;color:#475569;line-height:1.6">Hi ${escapeHtml(name)}, I've received your message and will get back to you soon.</p>
+        <p style="margin:0 0 8px 0;color:#475569;line-height:1.6">Hi ${escapeHtml(title)} ${escapeHtml(name)}, I've received your message and will get back to you soon.</p>
         <p style="margin:0 0 24px 0;color:#64748b;font-size:14px;font-style:italic">This is an automated email confirmation.</p>
 
         <div style="margin-bottom:20px">
@@ -153,6 +162,7 @@ function escapeHtml(input: string) {
 }
 
 export type AdminEmailData = {
+  title: string;
   name: string;
   email: string;
   subject?: string;
@@ -161,6 +171,7 @@ export type AdminEmailData = {
 };
 
 export type UserEmailData = {
+  title: string;
   name: string;
   email: string;
   subject?: string;
