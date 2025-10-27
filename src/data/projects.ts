@@ -170,7 +170,7 @@ export const projects = [
     domain: 'embedded',
     tags: ['YOLOv8', 'C++', 'Arduino', 'LiDAR', 'Sensor Fusion'],
     points: [
-      'Developing autonomous vehicle module for non-ADAS cars using YOLOv8.',
+      'Developed autonomous vehicle module for non-ADAS cars using YOLOv8.',
       'Implements real-time obstacle detection with pure-pursuit algorithm.',
       'Designing multi-modal sensor fusion combining camera, LiDAR, and ultrasonic.',
       'App-based image input for decision making like steering and braking.'

@@ -14,7 +14,7 @@ const experiences = [
       'Spearheaded the development of the official I.R.I.S. club website, taking the lead in designing, coding, and deploying it for live hackathon event registrations for 200+ people.',
       'Currently leading and managing the tech team to oversee website updates, changes, & new feature implementations.',
       'Led the website\'s successful deployment during live events, ensuring smooth operation and scalability for real-time registrations and payments.',
-      'Developing an autonomous vehicle module for non-ADAS cars using YOLOv8 deep learning models and sensor-based simulations.',
+      'Developed an autonomous vehicle module for non-ADAS cars using YOLOv8 deep learning models and sensor-based simulations.',
     ],
   },
   {

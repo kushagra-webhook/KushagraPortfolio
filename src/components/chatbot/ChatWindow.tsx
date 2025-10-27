@@ -50,7 +50,7 @@ export const ChatWindow = ({ isOpen, onClose }: ChatWindowProps) => {
     'help': "I can tell you about Kushagra's experience, projects, publications, skills, and how to contact him. Just ask!",
     'projects': "Kushagra has worked on various projects including IRIS Club RAG Chatbot, DocsVerse, LangGraph Researcher, and more. Check out the Projects section for details!",
     'contact': "You can reach Kushagra at kushagraa.n@gmail.com or connect via LinkedIn, GitHub, or the contact form on this website.",
-    'about': "Kushagra Singh is a Final Year Computer Science Engineering student at MIT World Peace University, passionate about AI/ML, Web Development, and Embedded Systems.",
+    'about': "Kushagra Singh is a Final Year Computer Science Engineering student at MIT World Peace University, passionate about AI/ML, Web Application Development, and Embedded Systems.",
     'experience': "Kushagra has worked as an ML Project Intern at Infosys Springboard, ML Research Associate at IIMT University, and is currently the Technical Head at IRIS, MIT WPU.",
     'skills': "Kushagra is proficient in Python, Java, C++, PyTorch, TensorFlow, Next.js, Spring Boot, AWS, Docker, and many more technologies.",
   };

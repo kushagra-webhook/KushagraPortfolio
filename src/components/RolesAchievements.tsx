@@ -35,7 +35,7 @@ const achievements = [
   },
   {
     title: 'Bosch BOROSA Hackathon 2025',
-    status: 'Top 18 Finalist',
+    status: 'Top 4 Finalist',
     description: 'Built an intelligent traffic safety system using YOLOv8 for real-time signal & crosswalk detection (95–98% accuracy). Integrated ESP32S3 and MQTT for edge automation and decision logic.',
     icon: '/images/bosch.jpg'
   },

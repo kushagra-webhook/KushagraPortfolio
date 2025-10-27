@@ -119,7 +119,7 @@ export function Hero() {
             <div className="bg-card/40 backdrop-blur-md rounded-3xl p-8 md:p-12 border border-primary/10 shadow-2xl mt-16 sm:mt-0">
               <div className="space-y-3 text-left text-sm md:text-base text-muted-foreground leading-relaxed">
                 <p>
-                  I'm a <span className="text-foreground">Final Year Computer Science Engineering student at MIT World Peace University, Pune</span>, passionate about building impactful tech solutions at the crossroads of <span className="text-foreground">Artificial Intelligence, Machine Learning, Web Development, and Embedded Systems</span>.
+                  I'm a <span className="text-foreground">Final Year Computer Science Engineering student at MIT World Peace University, Pune</span>, passionate about building impactful tech solutions at the crossroads of <span className="text-foreground">Artificial Intelligence, Machine Learning, Web Application Development, and Embedded Systems</span>.
                 </p>
                 
                 <p>
@@ -143,7 +143,7 @@ export function Hero() {
                   </div>
                   <div className="flex items-start gap-2">
                     <span className="text-primary mt-1 text-lg">▸</span>
-                    <span><span className="text-foreground font-semibold">Top 18 Finalist</span> at the Bosch BOROSA Hackathon 2025</span>
+                    <span><span className="text-foreground font-semibold">Top 4 Finalist</span> at the Bosch BOROSA Hackathon 2025</span>
                   </div>
                   <div className="flex items-start gap-2">
                     <span className="text-primary mt-1 text-lg">▸</span>

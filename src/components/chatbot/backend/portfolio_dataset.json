@@ -1,11 +1,11 @@
 [
     {
         "question": "Who is Kushagra Singh?",
-        "answer": "Kushagra Singh is a Final Year Computer Science Engineering student at MIT World Peace University, Pune, passionate about building impactful tech solutions at the crossroads of Artificial Intelligence, Machine Learning, Web Development, and Embedded Systems. As the Technical Head of the IRIS Tech Club, he leads a team of developers delivering innovative projects. He's interested in the AI/ML and Software Developer domains."
+        "answer": "Kushagra Singh is a Final Year Computer Science Engineering student at MIT World Peace University, Pune, passionate about building impactful tech solutions at the crossroads of Artificial Intelligence, Machine Learning, Web Application Development, and Embedded Systems. As the Technical Head of the IRIS Tech Club, he leads a team of developers delivering innovative projects. He's interested in the AI/ML and Software Developer domains."
     },
     {
         "question": "What are Kushagra Singh's technical skills?",
-        "answer": "Kushagra is highly skilled in multiple domains:\n- Programming Languages: Python, C, C++, Java, JavaScript\n- Machine Learning: PyTorch, TensorFlow, Scikit-Learn, HuggingFace, LangChain, OpenCV, NLTK, spaCy\n- Web Development: Next.js, React, Node.js, Express.js, FastAPI, Spring Boot\n- Databases: MySQL, MongoDB, PostgreSQL, MongoDB Atlas\n- Cloud & DevOps: AWS, Kubernetes, Docker, CI/CD Pipelines, Minikube\n- Big Data: Apache Spark, HDFS, Kafka, Hive, HBase, Cloudera\n- Embedded Systems: Arduino, STM32, ESP32, Raspberry Pi\n- Visualization: Tableau, Matplotlib, Seaborn\n- Generative AI: LLaMA-3, Retrieval-Augmented Generation"
+        "answer": "Kushagra is highly skilled in multiple domains:\n- Programming Languages: Python, C, C++, Java, JavaScript\n- Machine Learning: PyTorch, TensorFlow, Scikit-Learn, HuggingFace, LangChain, OpenCV, NLTK, spaCy\n- Web Application Development: Next.js, React, Node.js, Express.js, FastAPI, Spring Boot\n- Databases: MySQL, MongoDB, PostgreSQL, MongoDB Atlas\n- Cloud & DevOps: AWS, Kubernetes, Docker, CI/CD Pipelines, Minikube\n- Big Data: Apache Spark, HDFS, Kafka, Hive, HBase, Cloudera\n- Embedded Systems: Arduino, STM32, ESP32, Raspberry Pi\n- Visualization: Tableau, Matplotlib, Seaborn\n- Generative AI: LLaMA-3, Retrieval-Augmented Generation"
     },
     {
         "question": "What projects has Kushagra Singh worked on?",
@@ -17,11 +17,11 @@
     },
     {
         "question": "What is Kushagra's experience?",
-        "answer": "Kushagra has diverse professional experience:\n- Technical Head at IRIS, MIT WPU (Aug 2024-Present): Leading technical initiatives, managing the club's website development, and developing an autonomous vehicle module for non-ADAS cars.\n- Machine Learning Research Associate at IIMT University (Jan 2025-Mar 2025): Led an AI-driven machine learning research project for Cardiovascular Disease risk prediction, contributing to a PhD study in healthcare analytics.\n- ML Project Intern at Infosys Springboard (Oct 2024-Dec 2024): Designed and implemented a handwritten digit recognition application using neural networks (MLP, CNN, LeNet5) for MNIST dataset classification."
+        "answer": "Kushagra has diverse professional experience:\n- Technical Head at IRIS, MIT WPU (Aug 2024-Present): Leading technical initiatives, managing the club's website development, and developed an autonomous vehicle module for non-ADAS cars.\n- Machine Learning Research Associate at IIMT University (Jan 2025-Mar 2025): Led an AI-driven machine learning research project for Cardiovascular Disease risk prediction, contributing to a PhD study in healthcare analytics.\n- ML Project Intern at Infosys Springboard (Oct 2024-Dec 2024): Designed and implemented a handwritten digit recognition application using neural networks (MLP, CNN, LeNet5) for MNIST dataset classification."
     },
     {
         "question": "What are Kushagra's achievements?",
-        "answer": "Kushagra has earned several notable achievements:\n- Winner of the Mitsubishi UFJ Financial Group (MUFG) Hackathon 2025\n- Top 18 Finalist at the Bosch BOROSA Hackathon 2025\n- Top 100 out of 260,000+ participants at the Adobe Hackathon 2025\n- Top 25 Finalist at the Smart India Hackathon 2024\n- Finalist at HackMITWPU'24 Ideathon\n- Published researcher in IEEE ICoICC 2025"
+        "answer": "Kushagra has earned several notable achievements:\n- Winner of the Mitsubishi UFJ Financial Group (MUFG) Hackathon 2025\n- Top 4 Finalist at the Bosch BOROSA Hackathon 2025\n- Top 100 out of 260,000+ participants at the Adobe Hackathon 2025\n- Top 25 Finalist at the Smart India Hackathon 2024\n- Finalist at HackMITWPU'24 Ideathon\n- Published researcher in IEEE ICoICC 2025"
     },
     {
         "question": "What is Kushagra's education?",
@@ -48,8 +48,8 @@
         "answer": "The IRIS Club RAG Chatbot is a domain-specific AI assistant Kushagra engineered using LLaMA-3 70B, FAISS-based semantic search, and LangChain for efficient IRIS club information retrieval. He published research on hybrid Retrieval-Augmented Generation and fine-tuned transformer models for chatbot implementation, achieving 0.92 BERTScore accuracy. The chatbot was implemented via LangChain, HuggingFace embeddings, FAISS, and Groq API, optimized for 10ms query latency and 200+ daily queries."
     },
     {
-        "question": "What are Kushagra's web development skills?",
-        "answer": "Kushagra is proficient in full-stack web development with expertise in:\n- Frontend: React, Next.js, TypeScript, HTML, CSS, Bootstrap\n- Backend: Node.js, Express.js, Spring Boot, FastAPI\n- Databases: PostgreSQL, MongoDB, MySQL, MongoDB Atlas\n- Real-time: WebSockets\n- Payment Integration: Razorpay\n- Authentication: Supabase\n- Deployment: AWS, Docker"
+        "question": "What are Kushagra's Web Application Development skills?",
+        "answer": "Kushagra is proficient in full-stack Web Application Development with expertise in:\n- Frontend: React, Next.js, TypeScript, HTML, CSS, Bootstrap\n- Backend: Node.js, Express.js, Spring Boot, FastAPI\n- Databases: PostgreSQL, MongoDB, MySQL, MongoDB Atlas\n- Real-time: WebSockets\n- Payment Integration: Razorpay\n- Authentication: Supabase\n- Deployment: AWS, Docker"
     },
     {
         "question": "What are Kushagra's machine learning skills?",
@@ -61,7 +61,7 @@
     },
     {
         "question": "Tell me about the Bosch Hackathon project",
-        "answer": "For the Bosch BOROSA Hackathon 2025, Kushagra developed an Autonomous Traffic Management System, integrating YOLOv8 for traffic and crosswalk detection with ESP32 hardware for real-time signal control. He implemented MQTT for smooth communication between detection and traffic pods, managing multiple traffic states (GO, SLOW, HALT) with buzzer alerts, demonstrating real-time AI-driven embedded solutions for smart cities. The project used Roboflow to boost detection accuracy and deployed optimized ESP32 firmware for autonomous hardware actuation. This project was selected as a Top 18 Finalist."
+        "answer": "For the Bosch BOROSA Hackathon 2025, Kushagra developed an Autonomous Traffic Management System, integrating YOLOv8 for traffic and crosswalk detection with ESP32 hardware for real-time signal control. He implemented MQTT for smooth communication between detection and traffic pods, managing multiple traffic states (GO, SLOW, HALT) with buzzer alerts, demonstrating real-time AI-driven embedded solutions for smart cities. The project used Roboflow to boost detection accuracy and deployed optimized ESP32 firmware for autonomous hardware actuation. This project was selected as a Top 4 Finalist."
     },
     {
         "question": "What is the MedTech Diagnostic LLM Pipeline project?",
@@ -77,7 +77,7 @@
     },
     {
         "question": "What programming languages does Kushagra know?",
-        "answer": "Kushagra is proficient in multiple programming languages including:\n- Python (Advanced): For machine learning, data science, and backend development\n- JavaScript/TypeScript (Advanced): For web development with React and Next.js\n- Java (Intermediate): For enterprise applications and distributed systems\n- C/C++ (Intermediate): For embedded systems and performance-critical applications\n- SQL (Advanced): For database management and queries\n- HTML/CSS (Advanced): For frontend development and styling\n- Bash (Basic): For automation and scripting"
+        "answer": "Kushagra is proficient in multiple programming languages including:\n- Python (Advanced): For machine learning, data science, and backend development\n- JavaScript/TypeScript (Advanced): For Web Application Development with React and Next.js\n- Java (Intermediate): For enterprise applications and distributed systems\n- C/C++ (Intermediate): For embedded systems and performance-critical applications\n- SQL (Advanced): For database management and queries\n- HTML/CSS (Advanced): For frontend development and styling\n- Bash (Basic): For automation and scripting"
     },
     {
         "question": "Can you tell me about Kushagra's leadership experience?",
@@ -129,7 +129,7 @@
     },
     {
         "question": "What are Kushagra's strengths and weaknesses?",
-        "answer": "Kushagra's strengths include:\n- Technical versatility across multiple domains (AI/ML, web development, embedded systems)\n- Strong problem-solving abilities and analytical thinking\n- Excellent leadership and team management skills\n- Ability to quickly learn and adapt to new technologies\n- Strong communication and documentation skills\n- Proven track record in competitive environments (hackathons, research)\n\nAreas he's working to improve:\n- Balancing perfectionism with pragmatic delivery timelines\n- Delegating tasks more effectively in team settings\n- Focusing on fewer technologies to develop deeper expertise\n- Improving work-life balance while maintaining productivity\n- Enhancing public speaking and presentation skills"
+        "answer": "Kushagra's strengths include:\n- Technical versatility across multiple domains (AI/ML, Web Application Development, embedded systems)\n- Strong problem-solving abilities and analytical thinking\n- Excellent leadership and team management skills\n- Ability to quickly learn and adapt to new technologies\n- Strong communication and documentation skills\n- Proven track record in competitive environments (hackathons, research)\n\nAreas he's working to improve:\n- Balancing perfectionism with pragmatic delivery timelines\n- Delegating tasks more effectively in team settings\n- Focusing on fewer technologies to develop deeper expertise\n- Improving work-life balance while maintaining productivity\n- Enhancing public speaking and presentation skills"
     },
     {
         "question": "How does Kushagra stay updated with technology trends?",
@@ -145,7 +145,7 @@
     },
     {
         "question": "Did Kushagra build this entire portfolio website himself?",
-        "answer": "Yes, Kushagra designed and developed this entire portfolio website from scratch! He built it as a comprehensive showcase of his skills and projects. The tech stack includes:\n- **Frontend**: Next.js 14 with React, TypeScript, and Tailwind CSS\n- **UI/UX**: Custom components with Framer Motion animations and responsive design\n- **Styling**: Tailwind CSS with custom gradients and dark mode support\n- **Deployment**: Hosted on Vercel with automatic deployments\n- **Features**: Interactive sections, animated components, contact forms, and integrated chatbot\n- **Performance**: Optimized for speed and SEO with best practices\nThe portfolio demonstrates his expertise in modern web development, UI/UX design, and full-stack capabilities."
+        "answer": "Yes, Kushagra designed and developed this entire portfolio website from scratch! He built it as a comprehensive showcase of his skills and projects. The tech stack includes:\n- **Frontend**: Next.js 14 with React, TypeScript, and Tailwind CSS\n- **UI/UX**: Custom components with Framer Motion animations and responsive design\n- **Styling**: Tailwind CSS with custom gradients and dark mode support\n- **Deployment**: Hosted on Vercel with automatic deployments\n- **Features**: Interactive sections, animated components, contact forms, and integrated chatbot\n- **Performance**: Optimized for speed and SEO with best practices\nThe portfolio demonstrates his expertise in modern Web Application Development, UI/UX design, and full-stack capabilities."
     },
     {
         "question": "What technologies did Kushagra use to build this portfolio and chatbot?",
@@ -157,6 +157,6 @@
     },
     {
         "question": "Is this portfolio website and chatbot Kushagra's own project?",
-        "answer": "Yes, this entire portfolio website and chatbot system is Kushagra's personal project that he built to showcase his skills and experience. He developed everything from scratch including:\n- **Portfolio Design**: Custom UI/UX with responsive design and animations\n- **Chatbot Development**: RAG-based AI assistant with semantic search capabilities\n- **Full-Stack Integration**: Seamless connection between frontend and backend\n- **Deployment**: Multi-platform deployment strategy (Vercel + Render)\n- **Content Management**: All content, projects, and information curated by him\n\nThis project serves as both a professional showcase and a demonstration of his technical capabilities in web development, AI/ML, and modern deployment practices."
+        "answer": "Yes, this entire portfolio website and chatbot system is Kushagra's personal project that he built to showcase his skills and experience. He developed everything from scratch including:\n- **Portfolio Design**: Custom UI/UX with responsive design and animations\n- **Chatbot Development**: RAG-based AI assistant with semantic search capabilities\n- **Full-Stack Integration**: Seamless connection between frontend and backend\n- **Deployment**: Multi-platform deployment strategy (Vercel + Render)\n- **Content Management**: All content, projects, and information curated by him\n\nThis project serves as both a professional showcase and a demonstration of his technical capabilities in Web Application Development, AI/ML, and modern deployment practices."
     }
 ]

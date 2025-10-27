@@ -29,7 +29,7 @@ def extract_portfolio_content():
         print(f"Error loading portfolio_dataset.json: {e}")
     
     # About Kushagra
-    portfolio_data.append("Kushagra Singh is a Final Year Computer Science Engineering student at MIT World Peace University, Pune, passionate about building impactful tech solutions at the crossroads of Artificial Intelligence, Machine Learning, Web Development, and Embedded Systems. As the Technical Head of the IRIS Tech Club, he leads a team of developers delivering innovative projects. He's interested in the AI/ML and Software Developer domains.")
+    portfolio_data.append("Kushagra Singh is a Final Year Computer Science Engineering student at MIT World Peace University, Pune, passionate about building impactful tech solutions at the crossroads of Artificial Intelligence, Machine Learning, Web Application Development, and Embedded Systems. As the Technical Head of the IRIS Tech Club, he leads a team of developers delivering innovative projects. He's interested in the AI/ML and Software Developer domains.")
     
     # Try to load projects data
     try:
@@ -127,7 +127,7 @@ def extract_portfolio_content():
     portfolio_data.append("Kushagra Singh is a Final Year Computer Science Engineering student at MIT World Peace University, Pune. He's currently in his final year and is passionate about AI/ML and Software Development domains.")
     
     # Add detailed information about achievements
-    portfolio_data.append("Kushagra has earned several notable achievements including: Winner of the Mitsubishi UFJ Financial Group (MUFG) Hackathon 2025, Top 18 Finalist at the Bosch BOROSA Hackathon 2025, Top 100 out of 260,000+ participants at the Adobe Hackathon 2025, Top 25 Finalist at the Smart India Hackathon 2024, Finalist at HackMITWPU'24 Ideathon, and a published researcher in IEEE ICoICC 2025.")
+    portfolio_data.append("Kushagra has earned several notable achievements including: Winner of the Mitsubishi UFJ Financial Group (MUFG) Hackathon 2025, Top 4 Finalist at the Bosch BOROSA Hackathon 2025, Top 100 out of 260,000+ participants at the Adobe Hackathon 2025, Top 25 Finalist at the Smart India Hackathon 2024, Finalist at HackMITWPU'24 Ideathon, and a published researcher in IEEE ICoICC 2025.")
     
     # Add professional experience details
     portfolio_data.append("Kushagra has diverse professional experience as Technical Head at IRIS, MIT WPU (Aug 2024-Present), Machine Learning Research Associate at IIMT University (Jan 2025-Mar 2025), and ML Project Intern at Infosys Springboard (Oct 2024-Dec 2024).")
@@ -179,7 +179,7 @@ def extract_portfolio_content():
     portfolio_data.append("The chatbot system Kushagra developed includes: Python Flask backend with FAISS vector database for semantic search, HuggingFace all-MiniLM-L6-v2 embeddings for text similarity, Groq API integration with LLaMA-3 70B model for natural language responses, React/TypeScript frontend with real-time chat interface, Supabase integration for conversation logging, and deployment on Render for backend and Vercel for frontend.")
     
     # Add portfolio development details
-    portfolio_data.append("Kushagra's portfolio website features: Next.js 14 with React and TypeScript for modern web development, Tailwind CSS for responsive styling and dark mode support, Framer Motion for smooth animations and transitions, custom components and interactive sections, integrated contact forms and chatbot functionality, optimized performance with Next.js best practices, and automatic deployment through Vercel with GitHub integration.")
+    portfolio_data.append("Kushagra's portfolio website features: Next.js 14 with React and TypeScript for modern Web Application Development, Tailwind CSS for responsive styling and dark mode support, Framer Motion for smooth animations and transitions, custom components and interactive sections, integrated contact forms and chatbot functionality, optimized performance with Next.js best practices, and automatic deployment through Vercel with GitHub integration.")
     
     # Add deployment and technical details
     portfolio_data.append("The deployment strategy includes: Vercel for frontend hosting with global CDN and SSL certificates, Render for Python Flask backend hosting, FAISS vector database for efficient semantic search, HuggingFace API for text embeddings, Groq API for LLM responses, Supabase for conversation logging and analytics, and comprehensive error handling and health checks.")

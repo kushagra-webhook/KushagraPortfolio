@@ -52,7 +52,7 @@ export const skills: SkillCategories = {
     { name: 'Apache Spark', logo: '/images/spark.png' },
     { name: 'Kafka', logo: '/images/kafka.jpg' }
   ],
-  'Web Development': [
+  'Web Application Development': [
     { name: 'Next.js', logo: '/images/next.png' },
     { name: 'React', logo: '/images/reacg.png' },
     { name: 'Node.js', logo: '/images/node.jpeg' },
