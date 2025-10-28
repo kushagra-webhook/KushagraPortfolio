@@ -77,7 +77,7 @@
     },
     {
         "question": "What programming languages does Kushagra know?",
-        "answer": "Kushagra is proficient in multiple programming languages including:\n- Python (Advanced): For machine learning, data science, and backend development\n- JavaScript/TypeScript (Advanced): For Web Application Development with React and Next.js\n- Java (Intermediate): For enterprise applications and distributed systems\n- C/C++ (Intermediate): For embedded systems and performance-critical applications\n- SQL (Advanced): For database management and queries\n- HTML/CSS (Advanced): For frontend development and styling\n- Bash (Basic): For automation and scripting"
+        "answer": "Kushagra is proficient in multiple programming languages including:\n- Python: For machine learning, data science, and backend development\n- JavaScript/TypeScript: For Web Application Development with React and Next.js\n- Java: For enterprise applications and distributed systems\n- C/C++: For embedded systems and performance-critical applications\n- SQL: For database management and queries\n- HTML/CSS: For frontend development and styling\n- Bash: For automation and scripting"
     },
     {
         "question": "Can you tell me about Kushagra's leadership experience?",

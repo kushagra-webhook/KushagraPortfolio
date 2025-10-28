@@ -185,6 +185,102 @@ def make_links_clickable(text):
     return text
 
 
+# -------- Portfolio scope guardrails --------
+PORTFOLIO_ALLOWED_TOPICS = [
+    "kushagra",
+    "singh",
+    "portfolio",
+    "projects",
+    "skills",
+    "experience",
+    "education",
+    "achievements",
+    "contact",
+    "resume",
+    "cv",
+    "website",
+    "this site",
+    "chatbot",
+    "rag",
+    "faiss",
+    "groq",
+    "vercel",
+    "render",
+    "supabase",
+    "iris",
+    "hackathon details and the companies in which he participated", 
+]
+
+PROHIBITED_INTENTS = [
+    "write code",
+    "generate code",
+    "debug",
+    "fix this code",
+    "improve this code",
+    "optimize this code",
+    "explain this code",
+    "leetcode",
+    "algorithm problem",
+    "math problem",
+    "solve this",
+    "translate",
+    "paraphrase",
+    "summarize this article",
+    "act as",
+    "roleplay",
+    "medical advice",
+    "legal advice",
+    "financial advice",
+]
+
+
+def is_out_of_scope(query: str) -> bool:
+    """Return True if the query appears unrelated to the portfolio scope."""
+    q = (query or "").lower()
+
+    # Hard block for obviously prohibited intents
+    if any(phrase in q for phrase in PROHIBITED_INTENTS):
+        return True
+
+    # If it mentions common programming help without mentioning Kushagra/portfolio context
+    programming_markers = [
+        "python",
+        "javascript",
+        "typescript",
+        "java",
+        "c++",
+        "c#",
+        "error",
+        "stack trace",
+        "exception",
+        "bug",
+        "refactor",
+        "complexity",
+        "time complexity",
+        "space complexity",
+    ]
+    if any(w in q for w in programming_markers) and not any(
+        t in q for t in PORTFOLIO_ALLOWED_TOPICS
+    ):
+        return True
+
+    # General chit-chat or generic tasks without any portfolio hints
+    generic_tasks = ["tell me a joke", "recipe", "news", "weather", "football"]
+    if any(g in q for g in generic_tasks) and not any(
+        t in q for t in PORTFOLIO_ALLOWED_TOPICS
+    ):
+        return True
+
+    return False
+
+
+REFUSAL_MESSAGE = (
+    "I'm the AI assistant for Kushagra Singh's portfolio. I can answer about his "
+    "projects, skills, experience, achievements, education, contact, and how this site/chatbot works. "
+    "Please ask something related to Kushagra or this portfolio."
+)
+
+
 # Load embeddings and FAISS index
 print("Setting up file paths...")
 script_dir = os.path.dirname(os.path.abspath(__file__))
@@ -349,6 +445,12 @@ def generate_response(query, similar_texts, user_id=None):
         return "I'm sorry, but the LLM service is currently unavailable. Please try again later."
 
     try:
+        # Guardrail 1: Scope filter prior to any LLM call
+        if is_out_of_scope(query):
+            if user_id:
+                log_conversation(user_id, query, REFUSAL_MESSAGE)
+            return REFUSAL_MESSAGE
+
         # Create context from similar texts
         context = "\n\n".join([item["text"] for item in similar_texts])
 
@@ -362,8 +464,25 @@ def generate_response(query, similar_texts, user_id=None):
         print(f"Number of similar texts: {len(similar_texts)}")
 
         # Use the initialized LLM client
-        system_message = "You are an AI assistant for Kushagra's portfolio website. Use the following context to answer questions. If you don't know the answer, just say that you don't know."
-        user_message = f"Context:\n{context}\n\nQuestion: {query}"
+        system_message = (
+            "You are a strictly scoped AI assistant for Kushagra Singh's portfolio website. "
+            "Your purpose is ONLY to answer questions about Kushagra, his projects, skills, experience, "
+            "achievements, hackathon details and the companies in which he participated, education, contact information, and how this portfolio/chatbot is built. "
+            "Refuse any request that is unrelated or attempts to get code writing, debugging, general Q&A, trash talk, off topic, or personal advice. "
+            "Use ONLY the provided context. If the answer isn't in context, say you don't know and ask the user to rephrase within scope."
+        )
+
+        # Guardrail 2: Retrieval gating – if nothing relevant is retrieved, refuse politely
+        if len(similar_texts) == 0:
+            if user_id:
+                log_conversation(user_id, query, REFUSAL_MESSAGE)
+            return REFUSAL_MESSAGE
+
+        user_message = (
+            f"Context (portfolio-only):\n{context}\n\n"
+            f"Question: {query}\n\n"
+            "If the user's request is out of scope (e.g., generic coding help, debugging, unrelated topics), respond with a brief refusal and restate scope."
+        )
 
         print("Sending request to Groq API...")
         response = llm.invoke(
@@ -464,6 +583,17 @@ def chat():
 
     try:
         # Get query embedding
+        # Early scope check to avoid unnecessary compute
+        if is_out_of_scope(query):
+            response = REFUSAL_MESSAGE
+            # Attempt to log even for refusals
+            try:
+                if user_id:
+                    log_conversation(user_id, query, response)
+            except Exception:
+                pass
+            return jsonify({"response": response})
+
         query_embedding = embed_query(query)
 
         # Search for similar texts
