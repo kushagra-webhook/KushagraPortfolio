@@ -17,6 +17,8 @@ import pytz
 import requests
 from dotenv import load_dotenv
 from flask import Flask, jsonify, request
+import atexit
+from apscheduler.schedulers.background import BackgroundScheduler
 from flask_cors import CORS
 from langchain.chains import RetrievalQA
 from langchain.embeddings.base import Embeddings
@@ -26,6 +28,7 @@ from langchain_community.docstore.in_memory import InMemoryDocstore
 from langchain_community.vectorstores import FAISS
 from langchain_groq import ChatGroq
 from supabase import Client, create_client
+from keepalive import keep_database_alive
 
 print("Starting chatbot initialization...")
 
@@ -62,6 +65,15 @@ print("Environment variables loaded")
 # Initialize Flask app
 print("Initializing Flask app...")
 app = Flask(__name__)
+CORS(app)
+
+# Initialize scheduler
+scheduler = BackgroundScheduler()
+scheduler.add_job(func=keep_database_alive, trigger="interval", days=5)
+scheduler.start()
+
+# Shut down the scheduler when exiting the app
+atexit.register(lambda: scheduler.shutdown())
 
 # Get allowed origins from environment variable or use default in development
 ALLOWED_ORIGINS = os.getenv(
@@ -123,6 +135,25 @@ def clean_malformed_html(text):
     text = broken_html_pattern.sub("", text)
 
     return text
+
+
+@app.route('/health', methods=['GET'])
+def health_check():
+    return jsonify({"status": "healthy"})
+
+@app.route('/api/keepalive', methods=['GET'])
+def trigger_keepalive():
+    """
+    Endpoint to manually trigger the database keep-alive function
+    """
+    try:
+        result = keep_database_alive()
+        return jsonify(result), 200 if result.get('status') == 'success' else 500
+    except Exception as e:
+        return jsonify({
+            'status': 'error',
+            'message': f'Failed to execute keep-alive: {str(e)}'
+        }), 500
 
 
 def make_links_clickable(text):
