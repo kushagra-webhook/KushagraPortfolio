@@ -7,7 +7,7 @@ from pathlib import Path
 def keep_database_alive():
     """
     Function to keep the Supabase database active by performing a simple query
-    and logging the activity to a keepalive_logs table.
+    and logging the activity to the keepalive_logs table.
     """
     try:
         # Load environment variables
@@ -23,46 +23,40 @@ def keep_database_alive():
             
         supabase: Client = create_client(supabase_url, supabase_key)
         
-        # Try to insert a log entry - this will create the table if it doesn't exist
+        # Log entry for keep-alive
         log_entry = {
             'status': 'success',
-            'message': 'Database keep-alive ping successful'
+            'message': 'Database keep-alive ping',
+            'details': {
+                'service': 'keepalive',
+                'environment': os.getenv('FLASK_ENV', 'production')
+            }
         }
         
-        # First try to insert - this will fail if the table doesn't exist
-        try:
-            result = supabase.table('keepalive_logs').insert(log_entry).execute()
-        except Exception as e:
-            # If the error is because the table doesn't exist, create it
-            if 'relation "public.keepalive_logs" does not exist' in str(e):
-                # Create the table using the service role key
-                create_table_query = {
-                    'query': '''
-                    CREATE TABLE public.keepalive_logs (
-                        id BIGSERIAL PRIMARY KEY,
-                        created_at TIMESTAMPTZ DEFAULT NOW(),
-                        status TEXT NOT NULL,
-                        message TEXT
-                    );
-                    '''
-                }
-                # Use the SQL API to execute the query
-                supabase.rpc('execute_sql', create_table_query).execute()
-                # Try the insert again
-                result = supabase.table('keepalive_logs').insert(log_entry).execute()
-            else:
-                raise
+        # Insert the log entry
+        result = supabase.table('keepalive_logs').insert(log_entry).execute()
         
+        # Verify the entry was created
+        if not result.data:
+            raise Exception("Failed to insert keep-alive log entry")
+            
         # Also do a simple select query to ensure the database is active
         try:
-            supabase.table('keepalive_logs').select("*").limit(1).execute()
+            # This is just to keep the connection alive, we don't need the result
+            supabase.table('keepalive_logs')\
+                  .select('*')\
+                  .order('created_at', desc=True)\
+                  .limit(1)\
+                  .execute()
         except Exception as e:
             print(f"Warning: Select query failed: {str(e)}")
+            # Don't fail the entire operation if select fails
         
         return {
             'status': 'success',
             'message': 'Database keep-alive successful',
-            'timestamp': datetime.utcnow().isoformat()
+            'timestamp': datetime.utcnow().isoformat(),
+            'log_id': result.data[0]['id'] if result.data else None
         }
         
     except Exception as e:
