@@ -23,29 +23,41 @@ def keep_database_alive():
             
         supabase: Client = create_client(supabase_url, supabase_key)
         
-        # Create keepalive_logs table if it doesn't exist
-        create_table_query = """
-        CREATE TABLE IF NOT EXISTS keepalive_logs (
-            id BIGSERIAL PRIMARY KEY,
-            timestamp TIMESTAMPTZ NOT NULL DEFAULT NOW(),
-            status TEXT NOT NULL,
-            message TEXT
-        )
-        """
-        
-        # Execute the create table query
-        supabase.rpc('pg_temp.execute', {'query': create_table_query}).execute()
-        
-        # Insert a log entry
+        # Try to insert a log entry - this will create the table if it doesn't exist
         log_entry = {
             'status': 'success',
             'message': 'Database keep-alive ping successful'
         }
         
-        result = supabase.table('keepalive_logs').insert(log_entry).execute()
+        # First try to insert - this will fail if the table doesn't exist
+        try:
+            result = supabase.table('keepalive_logs').insert(log_entry).execute()
+        except Exception as e:
+            # If the error is because the table doesn't exist, create it
+            if 'relation "public.keepalive_logs" does not exist' in str(e):
+                # Create the table using the service role key
+                create_table_query = {
+                    'query': '''
+                    CREATE TABLE public.keepalive_logs (
+                        id BIGSERIAL PRIMARY KEY,
+                        created_at TIMESTAMPTZ DEFAULT NOW(),
+                        status TEXT NOT NULL,
+                        message TEXT
+                    );
+                    '''
+                }
+                # Use the SQL API to execute the query
+                supabase.rpc('execute_sql', create_table_query).execute()
+                # Try the insert again
+                result = supabase.table('keepalive_logs').insert(log_entry).execute()
+            else:
+                raise
         
         # Also do a simple select query to ensure the database is active
-        supabase.table('keepalive_logs').select("*").limit(1).execute()
+        try:
+            supabase.table('keepalive_logs').select("*").limit(1).execute()
+        except Exception as e:
+            print(f"Warning: Select query failed: {str(e)}")
         
         return {
             'status': 'success',
