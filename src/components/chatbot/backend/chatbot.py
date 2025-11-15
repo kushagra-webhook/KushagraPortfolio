@@ -137,10 +137,6 @@ def clean_malformed_html(text):
     return text
 
 
-@app.route('/health', methods=['GET'])
-def health_check():
-    return jsonify({"status": "healthy"})
-
 @app.route('/api/keepalive', methods=['GET'])
 def trigger_keepalive():
     """
