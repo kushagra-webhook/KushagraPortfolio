@@ -15,8 +15,8 @@ def keep_database_alive():
         load_dotenv(dotenv_path=env_path)
         
         # Initialize Supabase client
-        supabase_url = os.getenv("NEXT_PUBLIC_SUPABASE_URL")
-        supabase_key = os.getenv("NEXT_PUBLIC_SUPABASE_ANON_KEY")
+        supabase_url = os.getenv("SUPABASE_URL")
+        supabase_key = os.getenv("SUPABASE_SERVICE_ROLE_KEY")
         
         if not supabase_url or not supabase_key:
             raise ValueError("Supabase URL or API key not found in environment variables")
